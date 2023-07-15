@@ -11,7 +11,7 @@ const {
         searchReleaseDateCtrl,
         likeMovieCtrl,
         commentMovieCtrl,
-    } = require('../Controllers/moviesController')
+    } = require('../Controllers/movieController')
 
 moviesRouter.post('/movies', )
 
@@ -31,4 +31,4 @@ moviesRouter.put('/likes/:id', )
 
 moviesRouter.put('/comments/:id', )
 
- 
+module.exports = moviesRouter
