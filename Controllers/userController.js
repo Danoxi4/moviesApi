@@ -2,6 +2,7 @@ const movie = require('../Models/movie')
 const user = require('../Models/user')
 const AsyncHandler = require('express-async-handler')
 const { isPassMatched, hashPassword } = require('../utils/helper')
+const { generateToken } = require('../utils/generateToken')
 
 const userRegistrationCtrl  = AsyncHandler( async(req,res) => {
 
@@ -13,7 +14,7 @@ const userRegistrationCtrl  = AsyncHandler( async(req,res) => {
             throw new Error("email already in use")
         }
 
-        const user = await user.create({
+        const newUser = await user.create({
             username,
             email,
             password : await hashPassword(password),
@@ -22,7 +23,7 @@ const userRegistrationCtrl  = AsyncHandler( async(req,res) => {
 
         res.status(201).json({
             status: 'success',
-            data: user
+            data: newUser
         })
 
 })
@@ -31,27 +32,27 @@ const userLoginCtrl =  AsyncHandler(async (req,res)=>{
 
          const { email, password } = req.body
          
-         const user = await user.findOne({email})
+         const newUser = await user.findOne({email})
 
-         if(!user){
+         if(!newUser){
              return res.json({message:"account not found"})
          }
  
-         const isMatched = await isPassMatched(password, user.password)
+         const isMatched = await isPassMatched(password, newUser.password)
  
          if(!isMatched){
              return res.json({message:"Invalid login credentials"})
          }
          else{
              return res.json({
-                 data: generateToken(user._id),
+                 data: generateToken(newUser._id),
                  message :"Admin logged in successfully"
              })
          }
  
  })
 
-const userRecommendationsCtrl = asyncHandler(async (req, res) => {
+const userRecommendationsCtrl = AsyncHandler(async (req, res) => {
 
     const userId = req.session.userId; // Replace with the location where you store the logged-in user's ID
     const user = await User.findById(userId);
@@ -72,7 +73,7 @@ const userRecommendationsCtrl = asyncHandler(async (req, res) => {
 
   });
 
-const getUserFavoritesCtrl = asyncHandler(async (req, res) => {
+const getUserFavoritesCtrl = AsyncHandler(async (req, res) => {
   const userId = req.session.userId; // Replace with the location where you store the userId after login
   const user = await User.findById(userId).populate('favorites', 'title');
 
@@ -84,7 +85,7 @@ const getUserFavoritesCtrl = asyncHandler(async (req, res) => {
   res.json(user.favorites);
 });
 
-const addToFavoritesCtrl = asyncHandler(async (req, res) => {
+const addToFavoritesCtrl = AsyncHandler(async (req, res) => {
   const userId = req.session.userId; // Replace with the location where you store the userId after login
   const movieId = req.params.movieId;
 
@@ -106,7 +107,8 @@ const addToFavoritesCtrl = asyncHandler(async (req, res) => {
   res.json({ message: 'Movie added to favorites' });
 });
 
-const removeFromFavoritesCtrl = asyncHandler(async (req, res) => {
+
+const removeFromFavoritesCtrl = AsyncHandler(async (req, res) => {
   const userId = req.session.userId; // Replace with the location where you store the userId after login
   const movieId = req.params.movieId;
 
@@ -128,7 +130,7 @@ const removeFromFavoritesCtrl = asyncHandler(async (req, res) => {
   res.json({ message: 'Movie removed from favorites' });
 });
 
-const getWatchlistCtrl = asyncHandler(async (req, res) => {
+const getWatchlistCtrl = AsyncHandler(async (req, res) => {
   const userId = req.session.userId; // Replace with the location where you store the userId after login
   const user = await User.findById(userId).populate('watchlist', 'title');
 
@@ -140,7 +142,7 @@ const getWatchlistCtrl = asyncHandler(async (req, res) => {
   res.json(user.watchlist);
 });
 
-const addToWatchlistCtrl = asyncHandler(async (req, res) => {
+const addToWatchlistCtrl = AsyncHandler(async (req, res) => {
   const userId = req.session.userId; // Replace with the location where you store the userId after login
   const movieId = req.params.movieId;
 
@@ -162,7 +164,7 @@ const addToWatchlistCtrl = asyncHandler(async (req, res) => {
   res.json({ message: 'Movie added to watchlist' });
 });
 
-const removeFromWatchlistCtrl = asyncHandler(async (req, res) => {
+const removeFromWatchlistCtrl = AsyncHandler(async (req, res) => {
   const userId = req.session.userId; // Replace with the location where you store the userId after login
   const movieId = req.params.movieId;
 

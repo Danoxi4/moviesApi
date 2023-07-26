@@ -6,6 +6,16 @@ exports.hashPassword = async (password) => {
   return hash;
 };
 
-exports.isPassMatched = async (password, hash) => {
-  return await becrypt.compare(password, hash);
+exports.isPassMatched = async (password, hashedPassword) => {
+  console.log('Received password:', password);
+  console.log('Stored hashed password:', hashedPassword);
+
+  try {
+    const isMatch = await becrypt.compare(password, hashedPassword);
+    console.log('Password match result:', isMatch);
+    return isMatch;
+  } catch (err) {
+    console.error('Error comparing passwords:', err);
+    return false;
+  }
 };

@@ -1,10 +1,21 @@
 require("dotenv").config()
 const app = require('./App/app')
 const http = require('http')
-const dbConnect = require('./Config/dbConnect')
+const {
+    mongoConnect,
+    mongoDisconnect,
+  } = require('./Config/dbConnect')
 
-const PORT = process.env.PORT || 3030
+const PORT = process.env.PORT || 1986
 
 const server = http.createServer(app)
 
+async function dbConnect(){
+    await mongoConnect()
+}
+
 server.listen(PORT, console.log(`server is listening on port ${PORT}`))
+dbConnect()
+
+
+
