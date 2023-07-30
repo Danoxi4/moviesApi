@@ -1,16 +1,12 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
-const verifyToken = (token)=>{
-    return (token, 'anyKey' , (err,decoded)=>{
-        if(err){
-          return {
-            msg: "invalid Token"
-          }   
-        }
-        else {
-            return decoded
-        }
-    })
-}
+const verifyToken = (token) => {
+  try {
+    const decoded = jwt.verify(token, 'anyKey');
+    return decoded;
+  } catch (err) {
+    return null;
+  }
+};
 
-module.exports = verifyToken
+module.exports = verifyToken;

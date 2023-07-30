@@ -1,0 +1,541 @@
+<mxfile host="Electron" modified="2023-07-30T12:44:17.362Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.8 Chrome/112.0.5615.165 Electron/24.2.0 Safari/537.36" etag="-YZD-0nhFUAV3FhwJR47" version="21.2.8" type="device">
+  <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
+    <mxGraphModel dx="1886" dy="638" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="aM9ryv3xv72pqoxQDRHE-5" value="DB" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
+          <mxGeometry x="660" y="20" width="100" height="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-1" value="API" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=0;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;elbowEdgeStyle&quot;,&quot;elbow&quot;:&quot;vertical&quot;,&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="340" y="20" width="100" height="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-3" value="Client" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="20" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-4" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0.134;exitY=1.009;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="9TD_XUTvgI9WlBS_fLZC-11" target="9TD_XUTvgI9WlBS_fLZC-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="1010" as="sourcePoint" />
+            <mxPoint x="110" y="130" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="110" y="200" />
+              <mxPoint x="110" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-5" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="9TD_XUTvgI9WlBS_fLZC-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="170" as="sourcePoint" />
+            <mxPoint x="450" y="310" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="200" y="170" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-6" value="Register/Login" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-5">
+          <mxGeometry x="-0.0569" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-7" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="aM9ryv3xv72pqoxQDRHE-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="200" as="sourcePoint" />
+            <mxPoint x="670" y="200" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="480" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-8" value="check the user&#39;s favoriteGenre&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-7">
+          <mxGeometry x="-0.0569" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-9" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="9TD_XUTvgI9WlBS_fLZC-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="350" as="sourcePoint" />
+            <mxPoint x="110" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-10" value="send movies of that&amp;nbsp;&lt;br&gt;genre in ascending order of their rating" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-9">
+          <mxGeometry x="0.2644" y="-2" relative="1" as="geometry">
+            <mxPoint x="38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-11" value="Alternative" style="shape=umlFrame;whiteSpace=wrap;html=1;pointerEvents=0;width=80;height=30;" vertex="1" parent="1">
+          <mxGeometry x="10" y="290" width="750" height="750" as="geometry" />
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-12" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=1.003;entryY=0.246;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="9TD_XUTvgI9WlBS_fLZC-11">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="470" as="sourcePoint" />
+            <mxPoint x="60" y="340" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="400" y="470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-13" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="9TD_XUTvgI9WlBS_fLZC-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="310" as="sourcePoint" />
+            <mxPoint x="390" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-14" value="Click the Favorites Button" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-13">
+          <mxGeometry x="0.2737" y="-1" relative="1" as="geometry">
+            <mxPoint x="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-15" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="9TD_XUTvgI9WlBS_fLZC-1" target="aM9ryv3xv72pqoxQDRHE-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="340" y="300" as="sourcePoint" />
+            <mxPoint x="390" y="250" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="540" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-16" value="fetch the favorites of the user&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-15">
+          <mxGeometry x="-0.2469" y="-1" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-19" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="9TD_XUTvgI9WlBS_fLZC-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="350" as="sourcePoint" />
+            <mxPoint x="110" y="350" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="240" y="350" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-21" value="send the favoriites" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-19">
+          <mxGeometry x="0.3274" y="-1" relative="1" as="geometry">
+            <mxPoint x="47" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-22" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="9TD_XUTvgI9WlBS_fLZC-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="490" as="sourcePoint" />
+            <mxPoint x="390" y="260" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="160" y="490" />
+              <mxPoint x="310" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-23" value="Click the watch list Button" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-22">
+          <mxGeometry x="-0.2773" y="4" relative="1" as="geometry">
+            <mxPoint x="19" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-24" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="519.5" as="sourcePoint" />
+            <mxPoint x="710" y="519.5" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="540" y="519.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-25" value="fetch the watchList of the user&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-24">
+          <mxGeometry x="-0.2469" y="-1" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-26" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="540" as="sourcePoint" />
+            <mxPoint x="110" y="540" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="240" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-27" value="send the watchList" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-26">
+          <mxGeometry x="0.3274" y="-1" relative="1" as="geometry">
+            <mxPoint x="47" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-28" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=0.997;entryY=0.502;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.001;exitY=0.501;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="9TD_XUTvgI9WlBS_fLZC-11" target="9TD_XUTvgI9WlBS_fLZC-11">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="15.5" y="540" as="sourcePoint" />
+            <mxPoint x="764.5" y="603" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="390" y="665" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-29" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="9TD_XUTvgI9WlBS_fLZC-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="640" as="sourcePoint" />
+            <mxPoint x="390" y="330" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="250" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-32" value="give review on the movie" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-29">
+          <mxGeometry x="-0.1742" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-30" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="aM9ryv3xv72pqoxQDRHE-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="650" as="sourcePoint" />
+            <mxPoint x="670" y="650" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-31" value="Save movie review&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-30">
+          <mxGeometry x="-0.1962" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-33" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="570" as="sourcePoint" />
+            <mxPoint x="390" y="570" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="250" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-34" value="Click on movie" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-33">
+          <mxGeometry x="-0.1742" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-35" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="590" as="sourcePoint" />
+            <mxPoint x="710" y="590" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="540" y="590" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-36" value="fetch movie and details&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-35">
+          <mxGeometry x="-0.2469" y="-1" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-37" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="380" as="sourcePoint" />
+            <mxPoint x="390" y="380" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="250" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-38" value="Click on movie" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-37">
+          <mxGeometry x="-0.1742" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-39" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="390" as="sourcePoint" />
+            <mxPoint x="710" y="390" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="540" y="390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-40" value="fetch movie and details&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-39">
+          <mxGeometry x="-0.2469" y="-1" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-41" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="410" as="sourcePoint" />
+            <mxPoint x="390" y="410" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="250" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-42" value="give review on the movie" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-41">
+          <mxGeometry x="-0.1742" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-43" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="430" as="sourcePoint" />
+            <mxPoint x="710" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-44" value="Save movie review&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-43">
+          <mxGeometry x="-0.1962" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-45" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="9TD_XUTvgI9WlBS_fLZC-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="610" as="sourcePoint" />
+            <mxPoint x="390" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-46" value="Remove from watchlist" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-45">
+          <mxGeometry x="-0.1642" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-47" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="620" as="sourcePoint" />
+            <mxPoint x="710" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-48" value="Delete from watchlist" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-47">
+          <mxGeometry x="-0.1962" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-49" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="440" as="sourcePoint" />
+            <mxPoint x="390" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-50" value="Remove from Favorites" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-49">
+          <mxGeometry x="-0.1642" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-51" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="460" as="sourcePoint" />
+            <mxPoint x="710" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-52" value="Delete from Favorites" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-51">
+          <mxGeometry x="-0.1962" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-53" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="690" as="sourcePoint" />
+            <mxPoint x="390" y="690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-54" value="Click the Recommended movie" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-53">
+          <mxGeometry x="0.2737" y="-1" relative="1" as="geometry">
+            <mxPoint x="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-55" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="710" as="sourcePoint" />
+            <mxPoint x="710" y="710" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="540" y="710" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-56" value="fetch&amp;nbsp; movie and details" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-55">
+          <mxGeometry x="-0.2469" y="-1" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-57" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="730" as="sourcePoint" />
+            <mxPoint x="390" y="730" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-58" value="Like the movie" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-57">
+          <mxGeometry x="0.2737" y="-1" relative="1" as="geometry">
+            <mxPoint x="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-59" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="aM9ryv3xv72pqoxQDRHE-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="750" as="sourcePoint" />
+            <mxPoint x="670" y="750" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-60" value="Add movie to favorites" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-59">
+          <mxGeometry x="0.2737" y="-1" relative="1" as="geometry">
+            <mxPoint x="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-61" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="980" as="sourcePoint" />
+            <mxPoint x="390" y="980" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-62" value="Add movie to watch List" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-61">
+          <mxGeometry x="0.2737" y="-1" relative="1" as="geometry">
+            <mxPoint x="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-63" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="780" as="sourcePoint" />
+            <mxPoint x="710" y="780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-64" value="Add movie to watchList" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-63">
+          <mxGeometry x="0.2737" y="-1" relative="1" as="geometry">
+            <mxPoint x="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-65" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="790" as="sourcePoint" />
+            <mxPoint x="390" y="790" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="250" y="790" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-66" value="give review on the movie" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-65">
+          <mxGeometry x="-0.1742" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-67" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="810" as="sourcePoint" />
+            <mxPoint x="710" y="810" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-68" value="Save movie review&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-67">
+          <mxGeometry x="-0.1962" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-69" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=1.003;entryY=0.528;entryDx=0;entryDy=0;entryPerimeter=0;exitX=-0.004;exitY=0.527;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="10" y="830" as="sourcePoint" />
+            <mxPoint x="765" y="830" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-70" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="860" as="sourcePoint" />
+            <mxPoint x="390" y="860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-71" value="Query String&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-70">
+          <mxGeometry x="0.2737" y="-1" relative="1" as="geometry">
+            <mxPoint x="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-72" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="aM9ryv3xv72pqoxQDRHE-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="890" as="sourcePoint" />
+            <mxPoint x="670" y="890" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-73" value="Search in database" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-72">
+          <mxGeometry x="0.2737" y="-1" relative="1" as="geometry">
+            <mxPoint x="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-74" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="910" as="sourcePoint" />
+            <mxPoint x="390" y="910" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="250" y="910" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-75" value="Click on movie" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-74">
+          <mxGeometry x="-0.1742" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-76" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="930" as="sourcePoint" />
+            <mxPoint x="710" y="930" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="540" y="930" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-77" value="fetch movie and details&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-76">
+          <mxGeometry x="-0.2469" y="-1" relative="1" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-78" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="950" as="sourcePoint" />
+            <mxPoint x="390" y="950" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-79" value="Like the movie" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-78">
+          <mxGeometry x="0.2737" y="-1" relative="1" as="geometry">
+            <mxPoint x="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-80" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="960" as="sourcePoint" />
+            <mxPoint x="710" y="960" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-81" value="Add movie to favorites" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-80">
+          <mxGeometry x="0.2737" y="-1" relative="1" as="geometry">
+            <mxPoint x="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-82" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="760" as="sourcePoint" />
+            <mxPoint x="390" y="760" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-83" value="Add movie to watch List" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-82">
+          <mxGeometry x="0.2737" y="-1" relative="1" as="geometry">
+            <mxPoint x="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-84" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="aM9ryv3xv72pqoxQDRHE-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="1000" as="sourcePoint" />
+            <mxPoint x="670" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-85" value="Add movie to watch List" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-84">
+          <mxGeometry x="0.2737" y="-1" relative="1" as="geometry">
+            <mxPoint x="-38" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-86" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="110" y="1010" as="sourcePoint" />
+            <mxPoint x="390" y="1010" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="250" y="1010" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-87" value="give review on the movie" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-86">
+          <mxGeometry x="-0.1742" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-88" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="1030" as="sourcePoint" />
+            <mxPoint x="710" y="1030" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9TD_XUTvgI9WlBS_fLZC-89" value="Save movie review&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="9TD_XUTvgI9WlBS_fLZC-88">
+          <mxGeometry x="-0.1962" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

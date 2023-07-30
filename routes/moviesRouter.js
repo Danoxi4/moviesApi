@@ -13,22 +13,24 @@ const {
         commentMovieCtrl,
     } = require('../Controllers/movieController')
 
-moviesRouter.post('/movies', )
+const isAdmin = require('../Middlewares/isAdmin')
 
-moviesRouter.put('/movies/:id', )
+moviesRouter.post('/movies', isLogin, isAdmin,  uploadMoviesCtrl )
 
-moviesRouter.get('/movies/:id', )
+moviesRouter.put('/movies/:id', isLogin, isAdmin, updateMovieCtrl )
 
-moviesRouter.delete('/movies/:id', )
+moviesRouter.delete('/movies/:id', isLogin, isAdmin, deleteMovieCtrl )
 
-moviesRouter.post('/search', )
+moviesRouter.get('/movies/:id', getMovieCtrl )
 
-moviesRouter.get('/genre/:genre', )
+moviesRouter.post('/search', searchNameCtrl )
 
-moviesRouter.get('/releaseDate/:date', )
+moviesRouter.get('/genre/:genre', searchGenresCtrl )
 
-moviesRouter.put('/likes/:id', )
+moviesRouter.get('/releaseDate/:date', searchReleaseDateCtrl )
 
-moviesRouter.put('/comments/:id', )
+moviesRouter.put('/likes/:id', likeMovieCtrl )
+
+moviesRouter.put('/comments/:id', commentMovieCtrl )
 
 module.exports = moviesRouter

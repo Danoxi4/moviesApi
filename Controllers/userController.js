@@ -52,37 +52,40 @@ const userLoginCtrl =  AsyncHandler(async (req,res)=>{
  
  })
 
-const userRecommendationsCtrl = AsyncHandler(async (req, res) => {
+ const userRecommendationsCtrl = AsyncHandler(async (req, res) => {
+  const userId = req.params.id;
+  console.log("User ID:", userId); // Add this line to check if the user ID is getting passed correctly
 
-    const userId = req.session.userId; // Replace with the location where you store the logged-in user's ID
-    const user = await User.findById(userId);
-  
-    if (!user) {
-      res.status(404);
-      throw new Error('User not found');
-    }
-  
-    const favoriteGenre = user.favoriteGenre;
-  
-    // Fetch top rated movies from the user's favorite genre
-    const recommendations = await Movie.find({ genre: favoriteGenre })
-      .sort({ rating: -1 }) // Sort by rating in descending order
-      .limit(10); // Limit the number of recommendations to 10
-  
-    res.json(recommendations);
+  const newUser = await user.findById(userId);
 
-  });
-
-const getUserFavoritesCtrl = AsyncHandler(async (req, res) => {
-  const userId = req.session.userId; // Replace with the location where you store the userId after login
-  const user = await User.findById(userId).populate('favorites', 'title');
-
-  if (!user) {
+  if (!newUser) {
+    console.log("User not found in database"); // Add this line to check if the user is found or not
     res.status(404);
     throw new Error('User not found');
   }
 
-  res.json(user.favorites);
+  const favoriteGenre = newUser.favoriteGenre;
+
+  // Fetch top-rated movies from the user's favorite genre
+  const recommendations = await movie.find({ genre: favoriteGenre })
+    .sort({ rating: -1 }) // Sort by rating in descending order
+    .limit(10); // Limit the number of recommendations to 10
+
+  res.json(recommendations);
+});
+
+
+
+const getUserFavoritesCtrl = AsyncHandler(async (req, res) => {
+  const userId = req.params.userId; // Replace with the location where you store the userId after login
+  const newUser = await user.findById(userId).populate('favorites', 'title');
+
+  if (!newUser) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  res.json(newUser.favorites);
 });
 
 const addToFavoritesCtrl = AsyncHandler(async (req, res) => {
@@ -131,15 +134,15 @@ const removeFromFavoritesCtrl = AsyncHandler(async (req, res) => {
 });
 
 const getWatchlistCtrl = AsyncHandler(async (req, res) => {
-  const userId = req.session.userId; // Replace with the location where you store the userId after login
-  const user = await User.findById(userId).populate('watchlist', 'title');
+  const userId = req.params.userId; // Replace with the location where you store the userId after login
+  const newUser = await user.findById(userId).populate('watchlist', 'title');
 
-  if (!user) {
+  if (!newUser) {
     res.status(404);
     throw new Error('User not found');
   }
 
-  res.json(user.watchlist);
+  res.json(newUser.watchlist);
 });
 
 const addToWatchlistCtrl = AsyncHandler(async (req, res) => {

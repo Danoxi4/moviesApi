@@ -1,34 +1,27 @@
-const { verifyToken } = require('../utils/verifyToken');
+const verifyToken = require("../utils/verifyToken");
+const user = require("../Models/user");
 
-const isLogin = (req, res, next) => {
-  const token = req.headers.authorization;
-
-  if (!token) {
-    // Token is missing
-    return res.status(401).json({ message: 'No token provided. Please login first.' });
-  }
-
-  // Token format: "Bearer <token>"
-  const tokenParts = token.split(' ');
-  if (tokenParts.length !== 2 || tokenParts[0] !== 'Bearer') {
-    // Invalid token format
-    return res.status(401).json({ message: 'Invalid token format. Please provide a valid Bearer token.' });
-  }
-
-  const tokenValue = tokenParts[1];
-
-  const decodedPayload = verifyToken(tokenValue);
-
-  if (!decodedPayload) {
-    // Invalid or expired token
-    return res.status(401).json({ message: 'Invalid or expired token. Please login again.' });
-  }
-
-  // Add the decoded payload (e.g., user ID) to the request object for use in subsequent middleware/routes
-  req.userId = decodedPayload.id;
-
-  // Continue with the next middleware/route
-  next();
-};
+const isLogin = async (req, res, next) => {
+    // Get token from header
+    const headerObj = req.headers;
+    const token = headerObj && headerObj.authorization && headerObj.authorization.split(" ")[1];
+  
+    const verifiedToken = verifyToken(token);
+  
+    console.log("Verified Token:", verifiedToken); // Add this line to check the value of verifiedToken
+  
+    // Verify the token
+    if (verifiedToken) {
+      const newUser = await user.findById(verifiedToken.id).select("username email");
+  
+      // Save the user ID to the request object
+      req.userId = verifiedToken.id;
+      next();
+    } else {
+      const err = new Error("Token expired/invalid");
+      next(err);
+    }
+  };
+  
 
 module.exports = isLogin;

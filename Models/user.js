@@ -1,3 +1,5 @@
+// user.js
+
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -36,7 +38,7 @@ const userSchema = new mongoose.Schema({
       ref: 'Movie',
     },
   ],
-  ratings: [
+  reviews: [
     {
       movieId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -49,6 +51,20 @@ const userSchema = new mongoose.Schema({
         min: 0,
         max: 5,
       },
+      comment: {
+        type: String,
+        required: true,
+      },
+      createdAt: {
+        type: Date,
+        default: Date.now,
+      },
+    },
+  ],
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Movie',
     },
   ],
 });
