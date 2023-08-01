@@ -46,7 +46,7 @@ const userLoginCtrl =  AsyncHandler(async (req,res)=>{
          else{
              return res.json({
                  data: generateToken(newUser._id),
-                 message :"Admin logged in successfully"
+                 message :"user logged in successfully"
              })
          }
  

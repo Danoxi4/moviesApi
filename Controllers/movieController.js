@@ -1,12 +1,13 @@
 const AsyncHandler = require('express-async-handler');
-//const Movie = require('../models/movie');
+const mongoose = require('mongoose')
+const Movie = require('../Models/movie');
 
 // Controller function to upload a new movie
 const uploadMoviesCtrl = AsyncHandler(async (req, res) => {
-  const { title, genre, rating, releaseDate } = req.body;
+  const { title, genre, rating, releaseDate, director } = req.body;
 
   // Perform validation on the request body
-  if (!title || !genre || !rating || !releaseDate) {
+  if (!title || !genre || !rating || !releaseDate || !director) {
     return res.status(400).json({ message: 'Please provide all required movie details' });
   }
 
@@ -15,6 +16,7 @@ const uploadMoviesCtrl = AsyncHandler(async (req, res) => {
     genre,
     rating,
     releaseDate,
+    director
   });
 
   const savedMovie = await newMovie.save();
@@ -64,7 +66,7 @@ const deleteMovieCtrl = AsyncHandler(async (req, res) => {
 
 // Controller function to fetch a single movie by its ID
 const getMovieCtrl = AsyncHandler(async (req, res) => {
-  const movieId = req.params.movieId;
+  const movieId = req.params.Id;
 
   // Check if the movieId is a valid ObjectId
   if (!mongoose.Types.ObjectId.isValid(movieId)) {
@@ -106,18 +108,46 @@ const searchReleaseDateCtrl = AsyncHandler(async (req, res) => {
 
 // Controller function to like a movie
 const likeMovieCtrl = AsyncHandler(async (req, res) => {
-  const movieId = req.params.movieId;
+  const movieId = req.params.id;
 
   // Check if the movieId is a valid ObjectId
   if (!mongoose.Types.ObjectId.isValid(movieId)) {
     return res.status(400).json({ message: 'Invalid movie ID' });
   }
 
-  // Code to handle movie likes and update the database
-  // ...
+  // Find the movie in the database
+  const movie = await Movie.findById(movieId);
+  if (!movie) {
+    return res.status(404).json({ message: 'Movie not found' });
+  }
+
+  // Get the user ID from the request (assuming you have already implemented the isLogin middleware)
+  const usersId = req.userId;
+
+  // Find the user in the database
+  const newUser = await user.findById(usersId);
+  if (!newUser) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  // Check if the movie is already in the user's favorites
+  if (newUser.favorites.includes(movieId)) {
+    return res.status(409).json({ message: 'Movie is already in favorites' });
+  }
+
+  // Add the movie to the user's favorites
+  newUser.favorites.push(movieId);
+
+  // Increase the likes count of the movie
+  movie.likes += 1;
+
+  // Save the changes to the database
+  await newUser.save();
+  await movie.save();
 
   res.json({ message: 'Movie liked successfully' });
 });
+
 
 // Controller function to add a comment to a movie
 const reviewMovieCtrl = AsyncHandler(async (req, res) => {

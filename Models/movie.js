@@ -13,6 +13,10 @@ const movieSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  likes : {
+    type : Number,
+    default: 0
+  },
   cast: [
     {
       actorName: {

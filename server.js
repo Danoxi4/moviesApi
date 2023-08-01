@@ -6,7 +6,7 @@ const {
     mongoDisconnect,
   } = require('./Config/dbConnect')
 
-const PORT = process.env.PORT || 1986
+const PORT = process.env.PORT || 1987
 
 const server = http.createServer(app)
 

@@ -1,5 +1,5 @@
 const express = require('express')
-const moviesRouter = express.router()
+const moviesRouter = express.Router()
 
 const { 
         uploadMoviesCtrl,
@@ -13,24 +13,25 @@ const {
         reviewMovieCtrl,
     } = require('../Controllers/movieController')
 
+const isLogin = require('../Middlewares/isLogin')
 const isAdmin = require('../Middlewares/isAdmin')
 
-moviesRouter.post('/movies', isLogin, isAdmin,  uploadMoviesCtrl )
+moviesRouter.post('/', isLogin, isAdmin,  uploadMoviesCtrl )
 
-moviesRouter.put('/movies/:id', isLogin, isAdmin, updateMovieCtrl )
+moviesRouter.put('/:id', isLogin, isAdmin, updateMovieCtrl )
 
-moviesRouter.delete('/movies/:id', isLogin, isAdmin, deleteMovieCtrl )
+moviesRouter.delete('/:id', isLogin, isAdmin, deleteMovieCtrl )
 
-moviesRouter.get('/movies/:id', getMovieCtrl )
+moviesRouter.get('/:Id', isLogin, getMovieCtrl )
 
-moviesRouter.post('/search', searchNameCtrl )
+moviesRouter.post('/search', isLogin , searchNameCtrl )
 
-moviesRouter.get('/genre/:genre', searchGenresCtrl )
+moviesRouter.get('/genre/:genre', isLogin , searchGenresCtrl )
 
-moviesRouter.get('/releaseDate/:date', searchReleaseDateCtrl )
+moviesRouter.get('/releaseDate/:date', isLogin , searchReleaseDateCtrl )
 
-moviesRouter.put('/likes/:id', likeMovieCtrl )
+moviesRouter.put('/likes/:id', isLogin, likeMovieCtrl )
 
-moviesRouter.put('/review/:id', reviewMovieCtrl )
+moviesRouter.put('/review/:id', isLogin , reviewMovieCtrl )
 
 module.exports = moviesRouter
