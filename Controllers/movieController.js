@@ -120,7 +120,7 @@ const likeMovieCtrl = AsyncHandler(async (req, res) => {
 });
 
 // Controller function to add a comment to a movie
-const commentMovieCtrl = AsyncHandler(async (req, res) => {
+const reviewMovieCtrl = AsyncHandler(async (req, res) => {
   const movieId = req.params.movieId;
   const { comment } = req.body;
 
@@ -144,5 +144,5 @@ module.exports = {
   searchGenresCtrl,
   searchReleaseDateCtrl,
   likeMovieCtrl,
-  commentMovieCtrl,
+  reviewMovieCtrl,
 };

@@ -53,10 +53,10 @@ const userLoginCtrl =  AsyncHandler(async (req,res)=>{
  })
 
  const userRecommendationsCtrl = AsyncHandler(async (req, res) => {
-  const userId = req.params.id;
-  console.log("User ID:", userId); // Add this line to check if the user ID is getting passed correctly
+  const usersId = req.userId;
+  console.log("User ID:", usersId); // Add this line to check if the user ID is getting passed correctly
 
-  const newUser = await user.findById(userId);
+  const newUser = await user.findById(usersId);
 
   if (!newUser) {
     console.log("User not found in database"); // Add this line to check if the user is found or not
@@ -77,8 +77,8 @@ const userLoginCtrl =  AsyncHandler(async (req,res)=>{
 
 
 const getUserFavoritesCtrl = AsyncHandler(async (req, res) => {
-  const userId = req.params.userId; // Replace with the location where you store the userId after login
-  const newUser = await user.findById(userId).populate('favorites', 'title');
+  const usersId = req.userId; // Replace with the location where you store the userId after login
+  const newUser = await user.findById(usersId).populate('favorites', 'title');
 
   if (!newUser) {
     res.status(404);
@@ -89,53 +89,53 @@ const getUserFavoritesCtrl = AsyncHandler(async (req, res) => {
 });
 
 const addToFavoritesCtrl = AsyncHandler(async (req, res) => {
-  const userId = req.session.userId; // Replace with the location where you store the userId after login
+  const usersId = req.userId; // Replace with the location where you store the userId after login
   const movieId = req.params.movieId;
 
-  const user = await User.findById(userId);
+  const newUser = await user.findById(usersId);
 
-  if (!user) {
+  if (!newUser) {
     res.status(404);
     throw new Error('User not found');
   }
 
-  if (user.favorites.includes(movieId)) {
+  if (newUser.favorites.includes(movieId)) {
     res.status(400);
     throw new Error('Movie already in favorites');
   }
 
-  user.favorites.push(movieId);
-  await user.save();
+  newUser.favorites.push(movieId);
+  await newUser.save();
 
   res.json({ message: 'Movie added to favorites' });
 });
 
 
 const removeFromFavoritesCtrl = AsyncHandler(async (req, res) => {
-  const userId = req.session.userId; // Replace with the location where you store the userId after login
+  const usersId = req.userId; // Replace with the location where you store the userId after login
   const movieId = req.params.movieId;
 
-  const user = await User.findById(userId);
+  const newUser = await user.findById(usersId);
 
-  if (!user) {
+  if (!newUser) {
     res.status(404);
     throw new Error('User not found');
   }
 
-  if (!user.favorites.includes(movieId)) {
+  if (!newUser.favorites.includes(movieId)) {
     res.status(400);
     throw new Error('Movie not found in favorites');
   }
 
-  user.favorites.pull(movieId);
-  await user.save();
+  newUser.favorites.pull(movieId);
+  await newUser.save();
 
   res.json({ message: 'Movie removed from favorites' });
 });
 
 const getWatchlistCtrl = AsyncHandler(async (req, res) => {
-  const userId = req.params.userId; // Replace with the location where you store the userId after login
-  const newUser = await user.findById(userId).populate('watchlist', 'title');
+  const usersId = req.userId; // Replace with the location where you store the userId after login
+  const newUser = await user.findById(usersId).populate('watchlist', 'title');
 
   if (!newUser) {
     res.status(404);
@@ -146,45 +146,45 @@ const getWatchlistCtrl = AsyncHandler(async (req, res) => {
 });
 
 const addToWatchlistCtrl = AsyncHandler(async (req, res) => {
-  const userId = req.session.userId; // Replace with the location where you store the userId after login
+  const usersId = req.userId; // Replace with the location where you store the userId after login
   const movieId = req.params.movieId;
 
-  const user = await User.findById(userId);
+  const newUser = await user.findById(usersId);
 
-  if (!user) {
+  if (!newUser) {
     res.status(404);
     throw new Error('User not found');
   }
 
-  if (user.watchlist.includes(movieId)) {
+  if (newUser.watchlist.includes(movieId)) {
     res.status(400);
     throw new Error('Movie already in watchlist');
   }
 
-  user.watchlist.push(movieId);
-  await user.save();
+  newUser.watchlist.push(movieId);
+  await newUser.save();
 
   res.json({ message: 'Movie added to watchlist' });
 });
 
 const removeFromWatchlistCtrl = AsyncHandler(async (req, res) => {
-  const userId = req.session.userId; // Replace with the location where you store the userId after login
+  const usersId = req.userId; // Replace with the location where you store the userId after login
   const movieId = req.params.movieId;
 
-  const user = await User.findById(userId);
+  const newUser = await user.findById(usersId);
 
-  if (!user) {
+  if (!newUser) {
     res.status(404);
     throw new Error('User not found');
   }
 
-  if (!user.watchlist.includes(movieId)) {
+  if (!newUser.watchlist.includes(movieId)) {
     res.status(400);
     throw new Error('Movie not found in watchlist');
   }
 
-  user.watchlist.pull(movieId);
-  await user.save();
+  newUser.watchlist.pull(movieId);
+  await newUser.save();
 
   res.json({ message: 'Movie removed from watchlist' });
 });

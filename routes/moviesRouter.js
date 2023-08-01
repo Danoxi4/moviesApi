@@ -10,7 +10,7 @@ const {
         searchGenresCtrl,
         searchReleaseDateCtrl,
         likeMovieCtrl,
-        commentMovieCtrl,
+        reviewMovieCtrl,
     } = require('../Controllers/movieController')
 
 const isAdmin = require('../Middlewares/isAdmin')
@@ -31,6 +31,6 @@ moviesRouter.get('/releaseDate/:date', searchReleaseDateCtrl )
 
 moviesRouter.put('/likes/:id', likeMovieCtrl )
 
-moviesRouter.put('/comments/:id', commentMovieCtrl )
+moviesRouter.put('/review/:id', reviewMovieCtrl )
 
 module.exports = moviesRouter
