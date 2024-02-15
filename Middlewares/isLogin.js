@@ -16,6 +16,7 @@ const isLogin = async (req, res, next) => {
   
       // Save the user ID to the request object
       req.userId = verifiedToken.id;
+      req.user = newUser;
       next();
     } else {
       const err = new Error("Token expired/invalid");

@@ -10,7 +10,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   releaseDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   likes : {
@@ -60,10 +60,10 @@ const movieSchema = new mongoose.Schema({
 
 // Define a virtual property for calculating the average rating
 movieSchema.virtual('ratingAverage').get(function () {
-  if (this.reviews.length === 0) {
+  if (!this.reviews || this.reviews.length === 0) {
     return 0;
   }
-
+  
   const totalRating = this.reviews.reduce((sum, review) => sum + review.rating, 0);
   return totalRating / this.reviews.length;
 });

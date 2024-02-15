@@ -26,9 +26,9 @@ moviesRouter.get('/:Id', isLogin, getMovieCtrl )
 
 moviesRouter.post('/search', isLogin , searchNameCtrl )
 
-moviesRouter.get('/genre/:genre', isLogin , searchGenresCtrl )
+moviesRouter.post('/genre', isLogin , searchGenresCtrl )
 
-moviesRouter.get('/releaseDate/:date', isLogin , searchReleaseDateCtrl )
+moviesRouter.post('/releaseDate', isLogin , searchReleaseDateCtrl )
 
 moviesRouter.put('/likes/:id', isLogin, likeMovieCtrl )
 

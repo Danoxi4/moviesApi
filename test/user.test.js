@@ -252,7 +252,70 @@ describe('test Users Routes', () => {
     })
 
     describe('test DELETE /users', () => {
-        
+
+            beforeAll(async () => {
+              await mongoConnect();
+            });
+          
+            afterAll(async () => {
+              await mongoDisconnect();
+            });
+          
+            let userToken; // A variable to store the user token for authentication
+          
+            beforeEach(async () => {
+              // Create a test user and obtain the token for authentication in each test
+              const testUser = {
+                username: 'testuser',
+                email: 'testuser@example.com',
+                password: 'testpassword',
+                favoriteGenre: 'Action',
+                favorites: ['movieId1', 'movieId2'], // Add some favorite movies
+                watchlist: ['movieId3', 'movieId4'], // Add some movies to the watchlist
+              };
+          
+              const response = await request(app)
+                .post('/api/users/register')
+                .send(testUser);
+          
+              expect(response.statusCode).toBe(201);
+              expect(response.body).toHaveProperty('token');
+          
+              userToken = response.body.token;
+            });
+          
+            test('Remove from Favorites - Should respond with 200 success', async () => {
+              const movieIdToRemove = 'movieId1'; // ID of the movie to remove from favorites
+          
+              const response = await request(app)
+                .delete('/api/users/favorites')
+                .set('Authorization', `Bearer ${userToken}`)
+                .send({ movieId: movieIdToRemove })
+                .expect(200);
+          
+              expect(response.body.message).toBe('Movie removed from favorites successfully');
+          
+              // Check if the movie is actually removed from the user's favorites in the database
+              const user = await User.findOne({ username: 'testuser' });
+              expect(user.favorites).not.toContain(movieIdToRemove);
+            });
+          
+            test('Remove from Watchlist - Should respond with 200 success', async () => {
+              const movieIdToRemove = 'movieId3'; // ID of the movie to remove from watchlist
+          
+              const response = await request(app)
+                .delete('/api/users/watchlist')
+                .set('Authorization', `Bearer ${userToken}`)
+                .send({ movieId: movieIdToRemove })
+                .expect(200);
+          
+              expect(response.body.message).toBe('Movie removed from watchlist successfully');
+          
+              // Check if the movie is actually removed from the user's watchlist in the database
+              const user = await User.findOne({ username: 'testuser' });
+              expect(user.watchlist).not.toContain(movieIdToRemove);
+            });
+    });
+    
     })
 
-}) 
