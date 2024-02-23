@@ -9,12 +9,14 @@ const OMDB_API_KEY = process.env.OMDB_API_KEY || "bc2fe0a4"
 
 // Controller function to upload a new movie
 const uploadMoviesCtrl = AsyncHandler(async (req, res) => {
-  const { title, genre, rating, releaseDate, director } = req.body;
+  const { title, genre, releaseDate, director } = req.body;
 
   // Perform validation on the request body
-  if (!title || !genre || !rating || !releaseDate || !director) {
+  if (!title || !genre || !releaseDate || !director) {
     return res.status(400).json({ message: 'Please provide all required movie details' });
   }
+
+  const rating = 0
 
   const newMovie = new Movie({
     title,

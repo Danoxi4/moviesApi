@@ -44,10 +44,17 @@ const userLoginCtrl =  AsyncHandler(async (req,res)=>{
              return res.json({message:"Invalid login credentials"})
          }
          else{
-             return res.json({
-                 data: generateToken(newUser._id),
-                 message :"user logged in successfully"
-             })
+            const token = generateToken(newUser._id); 
+            res.json({ token, message: "User logged in successfully" });
+            // req.user = newUser
+            // req.userId = newUser._id
+            // res.redirect(`/recommendations`);
+                  
+            //  return 
+            // res.json({
+            //       data: generateToken(newUser._id),
+            //       message :"user logged in successfully"
+            //   })
          }
  
  })
