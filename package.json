@@ -1,0 +1,10 @@
+{
+    "name": "MovieLand",
+    "version": "1.0.0",
+    "author": "danialemayehu32@gmail.com",
+    "scripts": {
+        "start": "npm run start:backend & npm run start:frontend",
+        "start:backend": "cd backend && npm watch",
+        "start:frontend": "cd frontend && npm start"
+      }
+  }
