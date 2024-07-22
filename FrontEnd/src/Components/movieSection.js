@@ -1,43 +1,80 @@
 // src/components/MovieSection.js
 
 import React from 'react';
-import styled from 'styled-components';
+import {  Section,
+          MovieCard,
+          MovieImage,
+          MovieInfo,
+          MovieTitle,
+          MovieDetails,
+          MoviesWrapper,
+          ViewAllButton } from '../styles/movieStyle'
 
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100vh; /* Full screen height */
-  padding: 2rem;
-  background: #041D56; /* Dark blue background */
-  text-align: center;
-`;
 
-const MovieTitle = styled.h2`
-  margin: 1rem 0;
-  font-size: 2rem;
-  color: #ADE1FB; /* Light blue text */
-`;
-
-const MovieDescription = styled.p`
-  margin: 0.5rem 0;
-  font-size: 1.2rem;
-  color: #266CA9; /* Medium blue text */
-`;
-
-const MovieSection = ({ movie }) => {
-  if (!movie) {
-    return <Section>Loading newest movie...</Section>;
-  }
-
-  return (
-    <Section>
-      <MovieTitle>{movie.title}</MovieTitle>
-      <MovieDescription>{movie.description}</MovieDescription>
-    </Section>
-  );
-};
+          const MovieSection = () => {
+            return (
+              <Section>
+                <h1>Newest Movies</h1>
+                <MoviesWrapper>
+                  <MovieCard>
+                    <MovieImage />
+                    <MovieInfo>
+                      <MovieTitle>Placeholder Movie Title</MovieTitle>
+                      <MovieDetails>Genre: Placeholder Genre</MovieDetails>
+                      <MovieDetails>Director: Placeholder Director</MovieDetails>
+                      <MovieDetails>Release Date: Placeholder Date</MovieDetails>
+                    </MovieInfo>
+                  </MovieCard>
+                  <MovieCard>
+                    <MovieImage />
+                    <MovieInfo>
+                      <MovieTitle>Placeholder Movie Title</MovieTitle>
+                      <MovieDetails>Genre: Placeholder Genre</MovieDetails>
+                      <MovieDetails>Director: Placeholder Director</MovieDetails>
+                      <MovieDetails>Release Date: Placeholder Date</MovieDetails>
+                    </MovieInfo>
+                  </MovieCard>
+                  <MovieCard>
+                    <MovieImage />
+                    <MovieInfo>
+                      <MovieTitle>Placeholder Movie Title</MovieTitle>
+                      <MovieDetails>Genre: Placeholder Genre</MovieDetails>
+                      <MovieDetails>Director: Placeholder Director</MovieDetails>
+                      <MovieDetails>Release Date: Placeholder Date</MovieDetails>
+                    </MovieInfo>
+                  </MovieCard>
+                  <MovieCard>
+                    <MovieImage />
+                    <MovieInfo>
+                      <MovieTitle>Placeholder Movie Title</MovieTitle>
+                      <MovieDetails>Genre: Placeholder Genre</MovieDetails>
+                      <MovieDetails>Director: Placeholder Director</MovieDetails>
+                      <MovieDetails>Release Date: Placeholder Date</MovieDetails>
+                    </MovieInfo>
+                  </MovieCard>
+                  <MovieCard>
+                    <MovieImage />
+                    <MovieInfo>
+                      <MovieTitle>Placeholder Movie Title</MovieTitle>
+                      <MovieDetails>Genre: Placeholder Genre</MovieDetails>
+                      <MovieDetails>Director: Placeholder Director</MovieDetails>
+                      <MovieDetails>Release Date: Placeholder Date</MovieDetails>
+                    </MovieInfo>
+                  </MovieCard>
+                  <MovieCard>
+                    <MovieImage />
+                    <MovieInfo>
+                      <MovieTitle>Placeholder Movie Title</MovieTitle>
+                      <MovieDetails>Genre: Placeholder Genre</MovieDetails>
+                      <MovieDetails>Director: Placeholder Director</MovieDetails>
+                      <MovieDetails>Release Date: Placeholder Date</MovieDetails>
+                    </MovieInfo>
+                  </MovieCard>
+                  {/* Add more movie cards as needed */}
+                </MoviesWrapper>
+                <ViewAllButton href="#">View All</ViewAllButton>
+              </Section>
+            );
+          };
 
 export default MovieSection;

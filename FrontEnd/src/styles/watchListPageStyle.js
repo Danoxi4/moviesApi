@@ -90,7 +90,7 @@ const RemoveButton = styled.button`
   }
 `;
 
-module.exports = { 
+export { 
     PageContainer,
     Header,
     Body,

@@ -1,21 +1,28 @@
 // src/components/ContactSection.js
 
 import React from 'react';
-import styled from 'styled-components';
+import { Section, Container, Socials, SocialLink, SignInMessage, SignInButton, ContactHeader } from '../styles/contactSectionStyle'
 
-const Section = styled.section`
-  width: 100%;
-  padding: 2rem;
-  background: #0F2573; /* Medium blue background */
-  text-align: center;
-  color: #ADE1FB; /* Light blue text */
-`;
+
+
 
 const ContactSection = () => (
   <Section>
-    <h2>Contact Us</h2>
-    <p>Email: contact@movieland.com</p>
-    <p>Phone: (123) 456-7890</p>
+    <Container>
+      <ContactHeader>Contact Us</ContactHeader>
+      <Socials>
+        <hr style={{ border: '1px solid #ADE1FB', marginBottom: '1rem' }} />
+        <SocialLink href="https://www.instagram.com" target="_blank">Instagram</SocialLink>
+        <SocialLink href="https://www.facebook.com" target="_blank">Facebook</SocialLink>
+        <SocialLink href="https://www.twitter.com" target="_blank">Twitter</SocialLink>
+        <SocialLink href="https://wa.me" target="_blank">WhatsApp</SocialLink>
+        <SocialLink href="mailto:support@movieland.com">Email</SocialLink>
+      </Socials>
+      <SignInMessage>
+        <p>Sign in to access more features and stay updated with the latest movies and reviews.</p>
+        <SignInButton href="#">Sign In</SignInButton>
+      </SignInMessage>
+    </Container>
   </Section>
 );
 

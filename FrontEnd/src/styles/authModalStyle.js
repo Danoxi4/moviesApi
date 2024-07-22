@@ -76,7 +76,7 @@ const Form = styled.form`
   }
 `;
 
-module.exports = {
+export {
     ModalBackground,
     ModalContent,
     ButtonRow,

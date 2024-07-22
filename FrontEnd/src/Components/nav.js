@@ -1,79 +1,47 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import AuthModal from './authModal';
-
-const NavBar = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 1rem;
-  background: #041D56; /* Dark blue background */
-  color: white;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin-right: 1rem; /* Add margin to the right */
-`;
-
-const NavText = styled.span`
-  color: #ADE1FB; /* Light blue text */
-  margin-left: 1rem;
-`;
-
-const NavLink = styled.a`
-  color: #ADE1FB; /* Light blue text */
-  text-decoration: none;
-  margin-left: 1rem;
-  padding: 0.5rem 1rem;
-  background: transparent; /* Remove background */
-  border: none; /* Remove border */
-  cursor: pointer;
-  transition: color 0.3s;
-
-  &:hover {
-    color: #266CA9; /* Medium blue text on hover */
-  }
-`;
-
-const SearchInput = styled.input`
-  width: 150px;
-  height: 30px;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  margin-left: 1rem;
-`;
+import { Bar, Hamburger, NavLink, NavLinks, Logo, Navbar, Input, Spacer } from '../styles/navStyle';
+import AuthModal from '../Components/authModal'; // Make sure you import the AuthModal component
 
 const Nav = () => {
-  const [isAuthModalOpen, setAuthModalOpen] = useState(false);
-  const [initialTab, setInitialTab] = useState('signIn');
+  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalTab, setModalTab] = useState('signIn');
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
 
   const openModal = (tab) => {
-    setInitialTab(tab);
-    setAuthModalOpen(true);
+    setModalTab(tab);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
     <>
-      <NavBar>
-        <div>
-       
-        <NavLink href="#Home">Home</NavLink>
-        <NavLink href="#trending">Trending</NavLink>
-        <NavLink href="#contact">Contact</NavLink>
-      
-          <SearchInput type="search" placeholder="Search" />
-        </div>
-        <div>
+      <Navbar>
+        <Logo>MovieLand</Logo>
+        <NavLinks isOpen={isOpen}>
+          <Input type="text" placeholder="Search..." />
+          <NavLink href="#intro">Home</NavLink>
+          <NavLink href="#intro">About</NavLink>
+          <NavLink href="#intro">Movies</NavLink>
+          <NavLink href="#movies">Trending</NavLink>
+          <NavLink href="#contact">Contact</NavLink>
+          <Spacer/>
           <NavLink onClick={() => openModal('signIn')}>Sign In</NavLink>
           <NavLink onClick={() => openModal('signUp')}>Sign Up</NavLink>
-        </div>
-      </NavBar>
-      {isAuthModalOpen && (
-        <AuthModal onClose={() => setAuthModalOpen(false)} initialTab={initialTab} />
-      )}
+        </NavLinks>
+        <Hamburger onClick={toggleMenu}>
+          <Bar />
+          <Bar />
+          <Bar />
+        </Hamburger>
+      </Navbar>
+      {isModalOpen && <AuthModal onClose={closeModal} initialTab={modalTab} />}
     </>
   );
 };

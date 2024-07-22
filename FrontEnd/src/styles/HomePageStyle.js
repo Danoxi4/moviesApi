@@ -6,4 +6,4 @@ const HomePageContainer = styled.div`
   align-items: center;
 `;
 
-module.exports = { HomePageContainer}
+export { HomePageContainer}

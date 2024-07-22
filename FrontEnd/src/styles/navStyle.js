@@ -1,52 +1,87 @@
 import styled from 'styled-components';
 
-const NavBar = styled.nav`
+const Navbar = styled.nav`
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  padding: 1rem;
-  background: #041D56; /* Dark blue background */
-  color: white;
-  position: absolute;
+  align-items: center;
+  background: #041D56;
+  padding: 1rem 2rem;
+  position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
-  margin-right: 1rem; /* Add margin to the right */
+  z-index: 1000;
 `;
 
-const NavText = styled.span`
-  color: #ADE1FB; /* Light blue text */
-  margin-left: 1rem;
+const Logo = styled.div`
+  color: #ADE1FB;
+  font-size: 1.5rem;
+  font-weight: bold;
 `;
 
-const NavLink = styled.a`
-  color: #ADE1FB; /* Light blue text */
-  text-decoration: none;
-  margin-left: 1rem;
-  padding: 0.5rem 1rem;
-  background: transparent; /* Remove background */
-  border: none; /* Remove border */
-  cursor: pointer;
-  transition: color 0.3s;
+const NavLinks = styled.div`
+  display: flex;
+  align-items: center;
 
-  &:hover {
-    color: #266CA9; /* Medium blue text on hover */
+  @media (max-width: 768px) {
+    display: ${props => (props.isOpen ? 'flex' : 'none')};
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background: #041D56;
+    padding: 1rem 0;
   }
 `;
 
-const SearchInput = styled.input`
-  width: 150px;
-  height: 30px;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  margin-left: 1rem;
+const NavLink = styled.a`
+  color: #ADE1FB;
+  margin-left: 2rem;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #266CA9;
+  }
+
+  @media (max-width: 768px) {
+    margin: 1rem 0;
+  }
 `;
 
-module.exports = {
-    NavBar,
-    NavText,
-    NavLink,
-    SearchInput
-}
+const Spacer = styled.div`
+  width: 4rem; /* Adjust width for desired spacing */
+`;
+
+const Input = styled.input`
+  margin-left: 1rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #266CA9; /* Medium blue border */
+  background: #041D56; /* Match navbar background */
+  color: #ADE1FB; /* Light blue text */
+
+  @media (max-width: 768px) {
+    width: 80%;
+    margin: 1rem 0;
+  }
+`;
+
+const Hamburger = styled.div`
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+
+const Bar = styled.div`
+  width: 25px;
+  height: 3px;
+  background-color: #ADE1FB;
+  margin: 3px 0;
+`;
+
+export { Bar, Hamburger, NavLink, NavLinks, Logo, Navbar, Input, Spacer }

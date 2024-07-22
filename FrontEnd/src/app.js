@@ -9,6 +9,8 @@ import SignInPage from './pages/signInPage';
 import LoginPage from './pages/logInPage';
 import { AppProvider } from './contexts/appContext';
 import Nav from './Components/nav';
+import FavoritesPage from './Components/favorites';
+import WatchlistPage from './Components/watchListPage';
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
       <AppProvider>
         <GlobalStyle />
         <Nav/>
+        <FavoritesPage/> 
+        <WatchlistPage/> 
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/signin" element={<SignInPage />} />

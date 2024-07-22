@@ -1,16 +1,10 @@
 // src/pages/HomePage.js
 
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import IntroSection from '../Components/introSection';
 import MovieSection from '../Components/movieSection';
 import ContactSection from '../Components/contactSection';
-
-const HomePageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+import { HomePageContainer } from '../styles/HomePageStyle'
 
 const HomePage = () => {
   const [newestMovie, setNewestMovie] = useState(null);

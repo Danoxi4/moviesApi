@@ -7,12 +7,11 @@ const Section = styled.section`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100vh; /* Full screen height */
+  height: 100vh;
   padding: 2rem;
-  background: #01082D; /* Darkest background color */
+  background: #01082D;
   text-align: center;
   position: relative;
-  overflow: hidden; /* Ensure animations are not visible outside section */
 `;
 
 const IntroText = styled.div`
@@ -20,11 +19,23 @@ const IntroText = styled.div`
   h1 {
     font-size: 6.5rem;
     margin-bottom: 1rem;
-    color: #ADE1FB; /* Light blue text */
+    color: #ADE1FB;
+    @media (max-width: 768px) {
+      font-size: 4rem;
+    }
+    @media (max-width: 480px) {
+      font-size: 2.5rem;
+    }
   }
   p {
     font-size: 1.2rem;
-    color: #266CA9; /* Medium blue text */
+    color: #266CA9;
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+    @media (max-width: 480px) {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -89,7 +100,7 @@ const Popcorn = styled.div`
   /* Add more pseudo-elements for additional popcorn */
 `;
 
-module.exports = {
+export {
     Section,
     IntroText,
     Spotlight,
