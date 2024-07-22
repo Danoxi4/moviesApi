@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { UserTable, TableHeader, TableData, UsersContainer } from '../../styles/dashboardStyles/usersStyle'
+import { UserTable, TableHeader, TableData, UsersContainer } from '../../Styles/dashboardStyles/usersStyle'
 
 
 const Users = () => {

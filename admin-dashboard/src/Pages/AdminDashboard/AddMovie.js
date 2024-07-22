@@ -1,7 +1,7 @@
 // src/pages/AdminDashboard/AddMovie.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {  AddMovieContainer, Form } from '../../styles/dashboardStyles/addMovieStyle'
+import {  AddMovieContainer, Form } from '../../Styles/dashboardStyles/addMovieStyle'
 
 const AddMovie = () => {
   const [title, setTitle] = useState('');

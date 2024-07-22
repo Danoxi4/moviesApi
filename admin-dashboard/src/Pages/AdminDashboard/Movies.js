@@ -1,6 +1,6 @@
 // src/pages/AdminDashboard/Movies.js
 import React, { useEffect, useState } from 'react';
-import { MoviesContainer, TableHeader, TableData, MovieTable, MovieActions } from '../../styles/movieStyle'
+import { MoviesContainer, TableHeader, TableData, MovieTable, MovieActions } from '../../Styles/dashboardStyles/movieStyle'
 import { Link } from 'react-router-dom';
 
 const Movies = () => {

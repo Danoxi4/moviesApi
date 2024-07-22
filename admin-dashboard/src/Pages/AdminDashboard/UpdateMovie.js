@@ -1,7 +1,7 @@
 // src/pages/AdminDashboard/UpdateMovie.js
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Form, UpdateMovieContainer } from '../../styles/dashboardStyles/updateMovieStyle'
+import { Form, UpdateMovieContainer } from '../../Styles/dashboardStyles/updateMovieStyle'
 
 const UpdateMovie = () => {
   const { id } = useParams();

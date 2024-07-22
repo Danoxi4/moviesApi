@@ -1,5 +1,5 @@
 import React from 'react';
-import { DashboardContainer, DashboardHeader } from '../../styles/dashboardStyles/dashboardStyle'
+import { DashboardContainer, DashboardHeader } from '../../Styles/dashboardStyles/dashboardStyle'
 import AdminNav from './AdminNav';
 
 
