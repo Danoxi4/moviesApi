@@ -1,0 +1,37 @@
+.analytics-chart {
+    padding: 20px;
+    background-color: #041D56;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+  
+  .analytics-chart h2 {
+    color: #266CA9;
+    margin-bottom: 20px;
+  }
+  
+  .chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .chart {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 0;
+  }
+  
+  .chart canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  .chart-description {
+    text-align: center;
+    font-size: 1.1em;
+    margin-top: 10px;
+  }
+  

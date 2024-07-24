@@ -1,0 +1,46 @@
+.movie-form {
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #01082D;
+  font-family: 'Poppins', sans-serif;
+}
+
+.movie-form h2 {
+  color: #266CA9;
+  margin-bottom: 20px;
+}
+
+.movie-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.movie-form input[type="text"],
+.movie-form input[type="date"],
+.movie-form input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  color: #01082D;
+  font-family: 'Poppins', sans-serif;
+}
+
+.movie-form input[type="submit"] {
+  background-color: #266CA9;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+.movie-form input[type="submit"]:hover {
+  background-color: #0F2573;
+}

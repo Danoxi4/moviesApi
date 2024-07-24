@@ -1,0 +1,11 @@
+.header {
+  background-color: #266CA9; /* Medium blue for the header */
+  padding: 20px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'Poppins', sans-serif; /* Apply Poppins font */
+}
+
+.header-actions {
+  /* Style for header actions if needed */
+}

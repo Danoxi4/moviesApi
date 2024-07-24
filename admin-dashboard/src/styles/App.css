@@ -1,0 +1,46 @@
+body {
+  font-family: 'Poppins', sans-serif; /* Apply Poppins font to all text */
+}
+
+.app {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+  background-color: white; /* Main background color */
+}
+
+.sidebar {
+  width: 250px; /* Fixed width for the sidebar */
+  background-color: #041D56; /* Dark blue for the sidebar */
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1; /* Takes up remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: #266CA9; /* Medium blue for the header */
+  padding: 20px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto; /* Allows scrolling if content overflows */
+  background-color: white; /* Main background color for content */
+  color: #01082D; /* Dark blue text color for readability */
+}
+
+/* Ensure the layout is responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+}
