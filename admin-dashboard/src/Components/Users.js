@@ -1,20 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import '../styles/userList.css';
 
 function UserList() {
-  const users = [
-    { id: 1, name: 'John Doe', email: 'john@example.com' },
-    { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
-    // Add more user data here
-  ];
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get('http://localhost:1989/api/admin/users');
+        setUsers(response.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   const handleEdit = (id) => {
     // Handle edit user
   };
 
-  const handleDelete = (id) => {
-    // Handle delete user
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:1989/api/admin/users/${id}`);
+      setUsers(users.filter((user) => user.id !== id));
+    } catch (err) {
+      setError(err.message);
+    }
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="user-list">

@@ -53,6 +53,29 @@ const updateMovieCtrl = AsyncHandler(async (req, res) => {
   res.json(updatedMovie);
 });
 
+const getMovies = AsyncHandler(async (req, res) => {
+  try {
+    // Fetch movies from the database
+    const movies = await Movie.find(); // You can also add filtering, sorting, or pagination here
+
+    if (movies.length === 0) {
+      return res.status(404).json({ message: 'No movies found' });
+    }
+
+    // Send the list of movies
+    res.status(200).json({
+      status: 'success',
+      data: movies,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: 'error',
+      message: 'An error occurred while fetching movies',
+      error: error.message,
+    });
+  }
+});
+
 // Controller function to delete a movie
 const deleteMovieCtrl = AsyncHandler(async (req, res) => {
   const movieId = req.params.movieId;
@@ -268,4 +291,5 @@ module.exports = {
   searchReleaseDateCtrl,
   likeMovieCtrl,
   reviewMovieCtrl,
+  getMovies
 };

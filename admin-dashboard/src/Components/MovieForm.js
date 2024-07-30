@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import api from '../api';
 import '../styles/movieForm.css';
 
-
-
 function MovieForm({ selectedMovie, fetchMovies, clearSelectedMovie }) {
   const [title, setTitle] = useState('');
   const [genre, setGenre] = useState('');

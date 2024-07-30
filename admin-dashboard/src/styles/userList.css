@@ -1,63 +1,42 @@
 .user-list {
-    padding: 20px;
-    background-color: white; /* Main background color */
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: #01082D; /* Dark blue text color */
-    max-width: 1200px;
-    margin: 0 auto;
-    font-family: 'Poppins', sans-serif; /* Apply Poppins font */
-  }
-  
-  .user-list h2 {
-    color: #266CA9; /* Accent color */
-    margin-bottom: 20px;
-  }
-  
-  .user-list table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .user-list table th,
-  .user-list table td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .user-list table th {
-    background-color: #266CA9; /* Accent color */
-    color: white;
-  }
-  
-  .user-list table tr:nth-child(even) {
-    background-color: #f2f2f2; /* Light gray background for rows */
-  }
-  
-  .user-list table tr:hover {
-    background-color: #ddd; /* Hover effect */
-  }
-  
-  .user-list .actions {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .user-list .actions button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .user-list .actions button.edit {
-    background-color: #0F2573; /* Darker blue for edit */
-    color: white;
-  }
-  
-  .user-list .actions button.delete {
-    background-color: #d9534f; /* Red for delete */
-    color: white;
-  }
-  
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+button.edit {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button.delete {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button.edit:hover, button.delete:hover {
+  opacity: 0.8;
+}

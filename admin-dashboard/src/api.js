@@ -1,5 +1,5 @@
 // Example for fetching movies
-const API_URL = 'http://localhost:5000/movies';
+const API_URL = 'http://localhost:1989/api/movies';
 
 export const fetchMovies = async () => {
   try {

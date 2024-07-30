@@ -2,6 +2,7 @@ const AsyncHandler = require('express-async-handler');
 const Admin = require('../models/admin');
 const { isPassMatched, hashPassword } = require('../utils/helper')
 const { generateToken } = require('../utils/generateToken')
+const User = require('../Models/user')
 
 
 const registerAdminCtrl = AsyncHandler(async (req, res) => {
@@ -49,7 +50,13 @@ const adminLoginCtrl = AsyncHandler(async (req, res) => {
   
   });
 
+const getUsers = AsyncHandler(async (req, res) => {
+    const users = await User.find({});
+    res.json(users);
+});
+
 module.exports = {
     registerAdminCtrl,
-    adminLoginCtrl
+    adminLoginCtrl,
+    getUsers
 };

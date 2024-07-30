@@ -3,18 +3,18 @@ const webpack = require('webpack');
 module.exports = function override(config) {
   console.log('Webpack config before modification:', config);
 
-  config.resolve.alias = {
-    http: 'stream-http',
-    https: 'https-browserify',
-    buffer: 'buffer/',
-    stream: 'stream-browserify',
-    util: 'util/',
-    url: 'url/',
-    assert: 'assert/',
-    os: 'os-browserify/browser',
-    process: 'process/browser',
-    zlib: 'browserify-zlib',
+  config.resolve.fallback = {
+    ...config.resolve.fallback,
+    process: require.resolve('process/browser'),
+    buffer: require.resolve('buffer/'),
+    stream: require.resolve('stream-browserify'),
+    util: require.resolve('util/'),
+    url: require.resolve('url/'),
+    assert: require.resolve('assert/'),
+    os: require.resolve('os-browserify/browser'),
+    zlib: require.resolve('browserify-zlib'),
   };
+
   config.plugins = (config.plugins || []).concat([
     new webpack.ProvidePlugin({
       process: 'process/browser',

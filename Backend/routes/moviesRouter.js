@@ -11,12 +11,13 @@ const {
         searchReleaseDateCtrl,
         likeMovieCtrl,
         reviewMovieCtrl,
+        getMovies
     } = require('../Controllers/movieController')
 
 const isLogin = require('../Middlewares/isLogin')
 const isAdmin = require('../Middlewares/isAdmin')
 
-moviesRouter.post('/', isLogin, isAdmin,  uploadMoviesCtrl )
+moviesRouter.post('/upload', isLogin, isAdmin,  uploadMoviesCtrl )
 
 moviesRouter.put('/:id', isLogin, isAdmin, updateMovieCtrl )
 
@@ -33,5 +34,7 @@ moviesRouter.post('/releaseDate', isLogin , searchReleaseDateCtrl )
 moviesRouter.put('/likes/:id', isLogin, likeMovieCtrl )
 
 moviesRouter.put('/review/:id', isLogin , reviewMovieCtrl )
+
+moviesRouter.get('/', getMovies)
 
 module.exports = moviesRouter
