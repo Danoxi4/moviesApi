@@ -16,8 +16,10 @@ const {
 
 const isLogin = require('../Middlewares/isLogin')
 const isAdmin = require('../Middlewares/isAdmin')
+const upload = require('../Middlewares/multer'); // Adjust the path to your multer configuration
 
-moviesRouter.post('/upload', isLogin, isAdmin,  uploadMoviesCtrl )
+
+moviesRouter.post('/upload', /*isLogin, isAdmin,*/ upload.single('poster'), uploadMoviesCtrl )
 
 moviesRouter.put('/:id', isLogin, isAdmin, updateMovieCtrl )
 

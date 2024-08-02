@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import api from '../api';
-import '../styles/movieForm.css';
+// MovieForm.js
+import React, { useState } from 'react';
+//import api from '../api'; // Adjust the path as needed
+import '../styles/movieForm.css'
+import axios from 'axios'
 
-function MovieForm({ selectedMovie, fetchMovies, clearSelectedMovie }) {
+const MovieForm = ({ fetchMovies, clearForm }) => {
   const [title, setTitle] = useState('');
   const [genre, setGenre] = useState('');
   const [rating, setRating] = useState('');
@@ -10,19 +12,9 @@ function MovieForm({ selectedMovie, fetchMovies, clearSelectedMovie }) {
   const [director, setDirector] = useState('');
   const [poster, setPoster] = useState(null);
 
-  useEffect(() => {
-    if (selectedMovie) {
-      setTitle(selectedMovie.title);
-      setGenre(selectedMovie.genre);
-      setRating(selectedMovie.rating);
-      setReleaseDate(selectedMovie.releaseDate);
-      setDirector(selectedMovie.director);
-      setPoster(null); // Poster update handled separately
-    }
-  }, [selectedMovie]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append('title', title);
     formData.append('genre', genre);
@@ -31,32 +23,23 @@ function MovieForm({ selectedMovie, fetchMovies, clearSelectedMovie }) {
     formData.append('director', director);
     if (poster) formData.append('poster', poster);
 
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
     try {
-      if (selectedMovie) {
-        await api.put(`/movies/${selectedMovie.id}`, formData);
-      } else {
-        await api.post('/movies', formData);
-      }
-      fetchMovies();
+      await axios.post('http://localhost:1989/api/movies/upload', formData);
+      
+    console.log('Upload successful')
       clearForm();
-      clearSelectedMovie();
     } catch (error) {
       console.error('Error saving movie:', error);
     }
   };
 
-  const clearForm = () => {
-    setTitle('');
-    setGenre('');
-    setRating('');
-    setReleaseDate('');
-    setDirector('');
-    setPoster(null);
-  };
-
   return (
     <form className="movie-form" onSubmit={handleSubmit}>
-      <h2>{selectedMovie ? 'Update Movie' : 'Add Movie'}</h2>
+      <h2>Add Movie</h2>
       <label htmlFor="title">Title</label>
       <input
         type="text"
@@ -98,9 +81,9 @@ function MovieForm({ selectedMovie, fetchMovies, clearSelectedMovie }) {
         id="poster"
         onChange={(e) => setPoster(e.target.files[0])}
       />
-      <input type="submit" value={selectedMovie ? 'Update Movie' : 'Add Movie'} />
+      <input type="submit" value="Add Movie" />
     </form>
   );
-}
+};
 
 export default MovieForm;

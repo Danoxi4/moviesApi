@@ -33,6 +33,10 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  poster: {
+    type: String,
+    required: false, // Set to true if the poster is required
+  },  
   reviews: [
     {
       userId: {
