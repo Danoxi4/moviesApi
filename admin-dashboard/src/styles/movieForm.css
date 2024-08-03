@@ -44,3 +44,30 @@
 .movie-form input[type="submit"]:hover {
   background-color: #0F2573;
 }
+
+.popover {
+  position: fixed;
+  top: 10%; /* Adjust this value to position the popover vertically */
+  left: 50%;
+  transform: translateX(-50%); /* Center the popover horizontally */
+  width: 300px; /* Adjust width as needed */
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensures popover is above other content */
+  padding: 10px;
+  text-align: center;
+}
+
+.popoverContent {
+  position: relative; /* Needed for the close button positioning */
+}
+
+.closeButton {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}

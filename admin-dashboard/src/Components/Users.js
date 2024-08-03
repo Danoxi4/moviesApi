@@ -52,7 +52,7 @@ function UserList() {
         <tbody>
           {users.map((user) => (
             <tr key={user.id}>
-              <td>{user.name}</td>
+              <td>{user.username}</td>
               <td>{user.email}</td>
               <td className="actions">
                 <button className="edit" onClick={() => handleEdit(user.id)}>Edit</button>
