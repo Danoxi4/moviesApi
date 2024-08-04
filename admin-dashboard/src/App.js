@@ -7,8 +7,7 @@ import Movies from './Pages/Movies';
 import AddMovie from './Pages/AddMovie';
 import Analytics from './Pages/Analytics';
 import LoginPage from './Components/login';
-import ProtectedRoute from './protectedRoute';
-import { AuthProvider } from './AuthContext';
+import { AuthProvider } from './AuthContext'; // Import AuthProvider
 import './styles/App.css';
 
 function App() {
@@ -17,19 +16,12 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route 
-            path="/dashboard" 
-            element={
-              // <ProtectedRoute>
-                <Layout />
-              // </ProtectedRoute>
-            }
-          >
+          <Route path="/Dashboard" element={<Layout />}>
             <Route index element={<DashboardHome />} />
-            <Route path="users" element={<Users />} />
-            <Route path="movies" element={<Movies />} />
-            <Route path="add-movie" element={<AddMovie />} />
-            <Route path="analytics" element={<Analytics />} />
+            <Route path="/Dashboard/users" element={<Users />} />
+            <Route path="/Dashboard/movies" element={<Movies />} />
+            <Route path="/Dashboard/add-movie" element={<AddMovie />} />
+            <Route path="/Dashboard/analytics" element={<Analytics />} />
           </Route>
         </Routes>
       </AuthProvider>

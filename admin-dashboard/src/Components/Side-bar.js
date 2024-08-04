@@ -1,15 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/sideBar.css';
+import { useAuth } from '../AuthContext';
+import '../styles/sideBar.css'; // Import the CSS module
 
-function Sidebar() {
+const Sidebar = () => {
+  const { logout } = useAuth();
+
   return (
     <div className="sidebar">
-      <h2>Admin Dashboard</h2>
-      <nav>
-        <ul>
+      <h2>Admin Panel</h2>
+      <ul>
         <li>
-          <Link to="/dashboard">Home</Link>
+          <Link to="/dashboard">Dashboard</Link>
         </li>
         <li>
           <Link to="/dashboard/users">Users</Link>
@@ -23,10 +25,12 @@ function Sidebar() {
         <li>
           <Link to="/dashboard/analytics">Analytics</Link>
         </li>
-        </ul>
-      </nav>
+      </ul>
+      <button className="logout-button" onClick={logout}>
+        Logout
+      </button>
     </div>
   );
-}
+};
 
 export default Sidebar;

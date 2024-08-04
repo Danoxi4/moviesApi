@@ -5,18 +5,15 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [role, setRole] = useState(null); // Role can be 'admin' or 'regular'
-  const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const navigate = useNavigate(); // Ensure useNavigate is inside Router
 
   useEffect(() => {
-    // Check if user is logged in and their role
     const checkAuth = () => {
       const user = JSON.parse(localStorage.getItem('user'));
-      if (user && user.role) {
+      if (user && user.isAdmin) {
         setIsLoggedIn(true);
-        setRole(user.role);
-        // Optionally navigate if already logged in
-        // navigate('/dashboard');
+        setIsAdmin(true);
       }
     };
 
@@ -26,19 +23,19 @@ export const AuthProvider = ({ children }) => {
   const login = (userData) => {
     localStorage.setItem('user', JSON.stringify(userData));
     setIsLoggedIn(true);
-    setRole(userData.role);
-    navigate('/dashboard');
+    setIsAdmin(userData.isAdmin);
+    navigate('/Dashboard'); // Redirect to the dashboard 
   };
 
   const logout = () => {
     localStorage.removeItem('user');
     setIsLoggedIn(false);
-    setRole(null);
-    navigate('/');
+    setIsAdmin(false);
+    navigate('/'); // Redirect to login
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, role, login, logout }}>
+    <AuthContext.Provider value={{ isLoggedIn, isAdmin, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
