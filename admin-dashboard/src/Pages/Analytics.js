@@ -1,12 +1,12 @@
 import React from 'react';
-import AnalyticsChart from '../Components/Analytics';
+import Analytics from '../Components/Analytics';
 
-function Analytics() {
+function AnalyticsPage() {
   return (
     <div>
-      <AnalyticsChart />
+      <Analytics />
     </div>
   );
 }
 
-export default Analytics;
+export default AnalyticsPage;

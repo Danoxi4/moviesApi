@@ -5,7 +5,7 @@ import DashboardHome from './Pages/DashboardHome';
 import Users from './Pages/User';
 import Movies from './Pages/Movies';
 import AddMovie from './Pages/AddMovie';
-import Analytics from './Pages/Analytics';
+import AnalyticsPage from './Pages/Analytics';
 import LoginPage from './Components/login';
 import { AuthProvider } from './AuthContext'; // Import AuthProvider
 import './styles/App.css';
@@ -21,7 +21,7 @@ function App() {
             <Route path="/Dashboard/users" element={<Users />} />
             <Route path="/Dashboard/movies" element={<Movies />} />
             <Route path="/Dashboard/add-movie" element={<AddMovie />} />
-            <Route path="/Dashboard/analytics" element={<Analytics />} />
+            <Route path="/Dashboard/analytics" element={<AnalyticsPage />} />
           </Route>
         </Routes>
       </AuthProvider>

@@ -16,6 +16,7 @@ function MovieList({ setSelectedMovie }) {
     try {
       const response = await axios.get(API_URL); // Use axios to fetch movies
       setMovies(response.data.data); // Assuming response.data contains the movies array under 'data'
+      console.log(response.data.data[0]._id);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching movies:', error);
@@ -25,6 +26,7 @@ function MovieList({ setSelectedMovie }) {
 
   const deleteMovie = async (id) => {
     try {
+      console.log(id)
       await axios.delete(`${API_URL}/${id}`); // Use axios to delete a movie
       setMovies(movies.filter(movie => movie._id !== id)); // Assuming movie ID is '_id'
     } catch (error) {

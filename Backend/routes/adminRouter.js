@@ -8,10 +8,11 @@ const {
 } = require('../Controllers/adminController')
 
 const isAdmin = require('../Middlewares/isAdmin')
+const isLogin = require('../Middlewares/isLogin')
 
 adminRouter.post('/register', registerAdminCtrl)
 adminRouter.post('/login', adminLoginCtrl)
-adminRouter.get('/users', isAdmin, getUsers)
+adminRouter.get('/users', /*isLogin, isAdmin,*/ getUsers)
 
 
 module.exports = adminRouter

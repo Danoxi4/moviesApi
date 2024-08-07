@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import  '../styles/movieForm.css';  // Import the CSS module
+import '../styles/movieForm.css'; // Import the CSS module
 
-const MovieForm = ({ fetchMovies }) => {
+const MovieForm = () => {
   const [title, setTitle] = useState('');
   const [genre, setGenre] = useState('');
   const [rating, setRating] = useState('');
@@ -15,7 +15,6 @@ const MovieForm = ({ fetchMovies }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
     const clearForm = () => {
       setTitle('');
       setGenre('');
@@ -25,33 +24,51 @@ const MovieForm = ({ fetchMovies }) => {
       setPoster(null);
     };
 
-    // Fetch existing movies
     try {
       const response = await axios.get('http://localhost:1989/api/movies');
       const existingMovies = response.data.data;
-      
-      // Check for duplicate movies
+
       const isDuplicate = existingMovies.some(movie => movie.title.toLowerCase() === title.toLowerCase());
 
       if (isDuplicate) {
         setError('Movie already exists');
         setShowPopover(true);
-        clearForm()
+        clearForm();
         return;
       }
 
-      // Proceed with form submission
-      const formData = new FormData();
-      formData.append('title', title);
-      formData.append('genre', genre);
-      formData.append('rating', rating);
-      formData.append('releaseDate', releaseDate);
-      formData.append('director', director);
-      if (poster) formData.append('poster', poster);
+      // Log poster file to check if it's correctly set
+      console.log('Poster file:', poster);
 
-      await axios.post('http://localhost:1989/api/movies/upload', formData);
+      let posterUrl;
 
+      if (poster) {
+        const formData = new FormData();
+        formData.append('image', poster);
+
+        const imgbbResponse = await axios.post('https://api.imgbb.com/1/upload?key=77f62320835016fbf64d6ea01d8948e4', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+
+        posterUrl = imgbbResponse.data.data.url;
+        console.log(posterUrl);
+      }
+
+      // Prepare movie data
+      const movieData = {
+        title,
+        genre,
+        rating,
+        releaseDate,
+        director,
+        poster: posterUrl,
+      };
+
+      await axios.post('http://localhost:1989/api/movies/upload', movieData);
       console.log('Upload successful');
+
       clearForm();
     } catch (error) {
       console.error('Error saving movie:', error);
@@ -111,7 +128,9 @@ const MovieForm = ({ fetchMovies }) => {
       {showPopover && (
         <div className="popover">
           <div className="popoverContent">
-            <span className="closeButton "onClick={() => setShowPopover(false)}>&times;</span>
+            <span className="closeButton" onClick={() => setShowPopover(false)}>
+              &times;
+            </span>
             <p>{error}</p>
           </div>
         </div>

@@ -7,10 +7,10 @@ require('dotenv').config()
 
 const OMDB_API_KEY = process.env.OMDB_API_KEY || "bc2fe0a4"
 
-
-
 const uploadMoviesCtrl = AsyncHandler(async (req, res) => {
-  const { title, genre, releaseDate, director, rating = 0 } = req.body;
+  const { title, genre, releaseDate, director, rating = 0, poster } = req.body;
+
+  console.log('Received data:', req.body); // Log received data
 
   // Perform validation on the request body
   if (!title || !genre || !releaseDate || !director) {
@@ -23,13 +23,12 @@ const uploadMoviesCtrl = AsyncHandler(async (req, res) => {
     rating, // This will default to 0 if not provided
     releaseDate,
     director,
-    poster: req.file ? req.file.path : '', // Assuming multer middleware is used for file uploads
+    poster: poster ? poster : '', // Save the URL directly if provided, otherwise save an empty string
   });
 
   const savedMovie = await newMovie.save();
   res.status(201).json(savedMovie);
 });
-
 // Controller function to update an existing movie
 const updateMovieCtrl = AsyncHandler(async (req, res) => {
   const movieId = req.params.movieId;
@@ -77,22 +76,26 @@ const getMovies = AsyncHandler(async (req, res) => {
 });
 
 // Controller function to delete a movie
-const deleteMovieCtrl = AsyncHandler(async (req, res) => {
-  const movieId = req.params.movieId;
+const deleteMovieCtrl = async (req, res) => {
+  const { id } = req.params; // Access movieId from params using destructuring
+
+  console.log(`Received movieId: ${id}`);
 
   // Check if the movieId is a valid ObjectId
-  if (!mongoose.Types.ObjectId.isValid(movieId)) {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    console.log('Invalid movie ID');
     return res.status(400).json({ message: 'Invalid movie ID' });
   }
 
-  const deletedMovie = await Movie.findByIdAndDelete(movieId);
+  const deletedMovie = await Movie.findByIdAndDelete(id);
 
   if (!deletedMovie) {
+    console.log('Movie not found');
     return res.status(404).json({ message: 'Movie not found' });
   }
 
   res.json({ message: 'Movie deleted successfully' });
-});
+};
 
 // Controller function to fetch a single movie by its ID
 const getMovieCtrl = AsyncHandler(async (req, res) => {
