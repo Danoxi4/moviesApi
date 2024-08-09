@@ -25,20 +25,17 @@ const MovieForm = () => {
     };
 
     try {
-      const response = await axios.get('http://localhost:1989/api/movies');
-      const existingMovies = response.data.data;
+      // const response = await axios.get('http://localhost:1989/api/movies');
+      // const existingMovies = response.data.data;
 
-      const isDuplicate = existingMovies.some(movie => movie.title.toLowerCase() === title.toLowerCase());
+      // const isDuplicate = existingMovies.some(movie => movie.title.toLowerCase() === title.toLowerCase());
 
-      if (isDuplicate) {
-        setError('Movie already exists');
-        setShowPopover(true);
-        clearForm();
-        return;
-      }
-
-      // Log poster file to check if it's correctly set
-      console.log('Poster file:', poster);
+      // if (isDuplicate) {
+      //   setError('Movie already exists');
+      //   setShowPopover(true);
+      //   clearForm();
+      //   return;
+      // }
 
       let posterUrl;
 
@@ -46,17 +43,15 @@ const MovieForm = () => {
         const formData = new FormData();
         formData.append('image', poster);
 
-        const imgbbResponse = await axios.post('https://api.imgbb.com/1/upload?key=77f62320835016fbf64d6ea01d8948e4', formData, {
+        const imgbbResponse = await axios.post('http://localhost:1989/api/movies/uploadImage', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         });
 
-        posterUrl = imgbbResponse.data.data.url;
-        console.log(posterUrl);
+        posterUrl = imgbbResponse.data.url;
       }
 
-      // Prepare movie data
       const movieData = {
         title,
         genre,

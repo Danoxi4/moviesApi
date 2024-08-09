@@ -11,12 +11,32 @@ const {
         searchReleaseDateCtrl,
         likeMovieCtrl,
         reviewMovieCtrl,
-        getMovies
+        getMovies,
+        uploadImageCtrl
     } = require('../Controllers/movieController')
 
 const isLogin = require('../Middlewares/isLogin')
 const isAdmin = require('../Middlewares/isAdmin')
 
+
+const multer = require('multer');
+
+// Configure multer storage
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'uploads/');
+    },
+    filename: (req, file, cb) => {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, file.fieldname + '-' + uniqueSuffix + '-' + file.originalname);
+    }
+  });
+  
+  const upload = multer({ storage: storage });
+  
+
+
+moviesRouter.post('/uploadImage', upload.single('image'), uploadImageCtrl);
 
 moviesRouter.post('/upload', /*isLogin, isAdmin,*/  uploadMoviesCtrl )
 

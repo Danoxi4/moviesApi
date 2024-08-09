@@ -5,7 +5,34 @@ const axios = require('axios')
 const user = require('../Models/user');
 require('dotenv').config()
 
-const OMDB_API_KEY = process.env.OMDB_API_KEY || "bc2fe0a4"
+// const OMDB_API_KEY = process.env.OMDB_API_KEY || "bc2fe0a4"
+const FormData = require('form-data');
+const fs = require('fs');
+
+
+const uploadImageCtrl = AsyncHandler(async (req, res) => {
+  try {
+    console.log('Uploaded file:', req.file);
+
+    const formData = new FormData();
+    formData.append('image', fs.createReadStream(req.file.path));
+    
+    const imgbbResponse = await axios.post('https://api.imgbb.com/1/upload?key=77f62320835016fbf64d6ea01d8948e4', formData, {
+      headers: formData.getHeaders(),
+    });
+    
+    const posterUrl = imgbbResponse.data.data.url;
+
+    console.log('Uploaded file:', req.file);
+
+    fs.unlinkSync(req.file.path);
+
+    res.status(200).json({ url: posterUrl });
+  } catch (error) {
+    console.error('Error uploading image:', error.response ? error.response.data : error.message);
+    res.status(500).json({ message: 'Image upload failed' });
+  }
+});
 
 const uploadMoviesCtrl = AsyncHandler(async (req, res) => {
   const { title, genre, releaseDate, director, rating = 0, poster } = req.body;
@@ -233,7 +260,6 @@ const likeMovieCtrl = AsyncHandler(async (req, res) => {
   res.json({ message: 'Movie liked successfully' });
 });
 
-
 // Controller function to add a comment to a movie
 const reviewMovieCtrl = AsyncHandler(async (req, res) => {
   const movieId = req.params.id;
@@ -294,5 +320,6 @@ module.exports = {
   searchReleaseDateCtrl,
   likeMovieCtrl,
   reviewMovieCtrl,
-  getMovies
+  getMovies,
+  uploadImageCtrl
 };
