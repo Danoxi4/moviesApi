@@ -12,7 +12,8 @@ const {
         likeMovieCtrl,
         reviewMovieCtrl,
         getMovies,
-        uploadImageCtrl
+        uploadImageCtrl,
+        getLatestMovies
     } = require('../Controllers/movieController')
 
 const isLogin = require('../Middlewares/isLogin')
@@ -37,6 +38,8 @@ const storage = multer.diskStorage({
 
 
 moviesRouter.post('/uploadImage', upload.single('image'), uploadImageCtrl);
+
+moviesRouter.get('/latest', getLatestMovies)
 
 moviesRouter.post('/upload', /*isLogin, isAdmin,*/  uploadMoviesCtrl )
 

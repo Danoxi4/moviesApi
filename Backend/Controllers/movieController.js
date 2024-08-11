@@ -310,6 +310,16 @@ const reviewMovieCtrl = AsyncHandler(async (req, res) => {
   }
 });
 
+const getLatestMovies = async (req, res) => {
+  try {
+    const latestMovies = await Movie.find().sort({ releaseDate: -1 }).limit(5);
+    res.status(200).json({ status: 'success', data: latestMovies });
+  } catch (error) {
+    console.error('Error fetching latest movies:', error);
+    res.status(500).json({ status: 'error', message: 'Failed to fetch latest movies' });
+  }
+};
+
 module.exports = {
   uploadMoviesCtrl,
   updateMovieCtrl,
@@ -321,5 +331,6 @@ module.exports = {
   likeMovieCtrl,
   reviewMovieCtrl,
   getMovies,
-  uploadImageCtrl
+  uploadImageCtrl,
+  getLatestMovies
 };
