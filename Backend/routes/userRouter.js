@@ -11,12 +11,17 @@ const {
     getUserFavoritesCtrl,
     addToFavoritesCtrl,
     removeFromFavoritesCtrl,
-    userRecommendationsCtrl
+    userRecommendationsCtrl,
+    forgotPassword,
+    resetPassword
     } = require('../Controllers/userController')
 
 const  isLogin  = require('../Middlewares/isLogin')
 
 
+userRouter.post('/forgotPassword', forgotPassword)
+
+userRouter.post('/reset-password/:token', resetPassword ) 
 
 userRouter.post('/register', userRegistrationCtrl )
 

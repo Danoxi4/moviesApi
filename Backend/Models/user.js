@@ -1,5 +1,3 @@
-// user.js
-
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -67,6 +65,15 @@ const userSchema = new mongoose.Schema({
       ref: 'Movie',
     },
   ],
+  // New fields for password reset functionality
+  resetPasswordToken: {
+    type: String,
+    default: undefined,
+  },
+  resetPasswordExpires: {
+    type: Date,
+    default: undefined,
+  },
 });
 
 const User = mongoose.model('User', userSchema);

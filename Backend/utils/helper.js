@@ -1,6 +1,9 @@
 const becrypt = require("bcryptjs");
 
 exports.hashPassword = async (password) => {
+  if (!password) {
+    throw new Error('Password is required');
+  }
   const salt = await becrypt.genSalt(10);
   const hash = await becrypt.hash(password, salt);
   return hash;

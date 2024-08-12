@@ -3,6 +3,105 @@ const user = require('../Models/user')
 const AsyncHandler = require('express-async-handler')
 const { isPassMatched, hashPassword } = require('../utils/helper')
 const { generateToken } = require('../utils/generateToken')
+const { generateResetToken, sendResetEmail } = require('../utils/passwordReset');
+const { JWT_SECRET, EMAIL_USER, EMAIL_PASS, FRONTEND_URL } = process.env;
+const crypto = require('crypto');
+const bcrypt = require('bcrypt');
+const { sendEmail } = require('../utils/emailUtils'); // Adjust the path to your email utility
+const jwt = require('jsonwebtoken');
+
+require('dotenv').config();
+
+// Generate a password reset token and send it via email
+const requestPasswordReset = AsyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    user.resetPasswordToken = resetToken;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+    await user.save();
+
+    const resetURL = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+    await sendEmail(user.email, 'Password Reset', `Click this link to reset your password: ${resetURL}`);
+
+    res.status(200).json({ message: 'Password reset link sent' });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// Reset the user's password
+const resetPassword = AsyncHandler(async (req, res) => {
+
+  try {
+    const { password } = req.body;
+    const { token } = req.params; // Get the token from the URL parameter
+  
+    console.log('Received token:', token); // Log the received token
+    console.log('Request body:', req.body);
+    console.log("new password: ", password) // Log the request body
+    // Verify the token
+    const decoded = jwt.verify(token, JWT_SECRET);
+    console.log('Decoded token:', decoded); // Log the decoded token
+
+    const User = await user.findById(decoded.id); // Fetch the user by ID
+    console.log('User:', User);
+    if (!User) {
+      return res.status(400).json({ message: 'User not found' });
+    }
+
+    const hashedPassword = await hashPassword(password);
+    console.log('Hashed password:', hashedPassword);
+    User.password = hashedPassword;
+    await User.save();
+
+     res.status(200).json({
+      message: 'Password has been reset',
+      user: {
+        id: User._id,
+        username: User.username,
+        email: User.email,
+        favoriteGenre: User.favoriteGenre
+      }
+    })
+  } catch (error) {
+    console.error('Error in resetPassword controller:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
+
+
+// Controller to handle forgot password request
+const forgotPassword = AsyncHandler( async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const User = await user.findOne({ email });
+
+    if (!User) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const resetToken = generateResetToken(User._id, JWT_SECRET);
+    const resetLink = `${FRONTEND_URL}/reset-password?token=${resetToken}`;
+
+    await sendResetEmail(email, resetLink, EMAIL_USER, EMAIL_PASS);
+
+    res.status(200).json({ message: 'Password reset email sent' });
+  } catch (error) {
+    console.error('Error in forgotPassword controller:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 const userRegistrationCtrl  = AsyncHandler( async(req,res) => {
 
@@ -81,8 +180,6 @@ const userLoginCtrl =  AsyncHandler(async (req,res)=>{
   res.json(recommendations);
 });
 
-
-
 const getUserFavoritesCtrl = AsyncHandler(async (req, res) => {
   const usersId = req.userId; // Replace with the location where you store the userId after login
   const newUser = await user.findById(usersId).populate('favorites', 'title');
@@ -116,7 +213,6 @@ const addToFavoritesCtrl = AsyncHandler(async (req, res) => {
 
   res.json({ message: 'Movie added to favorites' });
 });
-
 
 const removeFromFavoritesCtrl = AsyncHandler(async (req, res) => {
   const usersId = req.userId; // Replace with the location where you store the userId after login
@@ -207,5 +303,8 @@ module.exports = {
     getUserFavoritesCtrl,
     addToFavoritesCtrl,
     removeFromFavoritesCtrl,
-    userRecommendationsCtrl
+    userRecommendationsCtrl,
+    forgotPassword,
+    requestPasswordReset,
+    resetPassword
 }
