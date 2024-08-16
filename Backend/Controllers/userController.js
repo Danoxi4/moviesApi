@@ -292,6 +292,34 @@ const removeFromWatchlistCtrl = AsyncHandler(async (req, res) => {
   res.json({ message: 'Movie removed from watchlist' });
 });
 
+// Controller to get movies based on the user's favorite genre
+const getMoviesByFavoriteGenre = AsyncHandler(async (req, res) => {
+  try {
+    console.log('Getting movies from recommendations...');
+    console.log(req.user)
+    const User = await user.findById(req.user._id);
+    console.log(User)
+    const { favoriteGenre } = User;
+     // Assuming you have the user's favorite genre in the req.user after authentication
+    console.log(favoriteGenre)
+    if (!favoriteGenre) {
+      return res.status(400).json({ message: 'Favorite genre not found' });
+    }
+
+    const movies = await movie.find({ genre: favoriteGenre });
+    console.log(movies)
+    if (!movies || movies.length === 0) {
+      return res.status(404).json({ message: 'No movies found for your favorite genre' });
+    }
+
+    res.json(movies);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
+  }
+});
+
+
+
 
 
 module.exports = {
@@ -306,5 +334,6 @@ module.exports = {
     userRecommendationsCtrl,
     forgotPassword,
     requestPasswordReset,
-    resetPassword
+    resetPassword,
+    getMoviesByFavoriteGenre
 }

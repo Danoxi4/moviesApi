@@ -125,22 +125,33 @@ const deleteMovieCtrl = async (req, res) => {
 };
 
 // Controller function to fetch a single movie by its ID
-const getMovieCtrl = AsyncHandler(async (req, res) => {
-  const movieId = req.params.Id;
+// In your controller or route handler
+const getMovieCtrl = async (req, res) => {
+  try {
+    console.log(req.params.Id);
+    const movie = await Movie.findById(req.params.Id);
+    if (!movie) {
+      return res.status(404).json({ message: 'Movie not found' });
+    }
 
-  // Check if the movieId is a valid ObjectId
-  if (!mongoose.Types.ObjectId.isValid(movieId)) {
-    return res.status(400).json({ message: 'Invalid movie ID' });
+    // Use the getFormattedCast method to get the formatted cast
+    const formattedCast = movie.getFormattedCast();
+
+    console.log(movie)
+    res.json({
+      title: movie.title,
+      genre: movie.genre,
+      releaseDate: movie.releaseDate,
+      director: movie.director,
+      poster: movie.poster,
+      cast: formattedCast, // Use the formatted cast
+      ratingAverage: movie.ratingAverage,
+      reviews: movie.reviews,
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
   }
-
-  const movie = await Movie.findById(movieId);
-
-  if (!movie) {
-    return res.status(404).json({ message: 'Movie not found' });
-  }
-
-  res.json(movie);
-});
+};
 
 // Controller function to search movies by name
 const searchNameCtrl = AsyncHandler(async (req, res) => {

@@ -5,57 +5,30 @@ import axios from 'axios';
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 const Analytics = () => {
-  const [users, setUsers] = useState([]);
-  const [movies, setMovies] = useState([]);
   const [usersByGenre, setUsersByGenre] = useState([]);
   const [mostLikedMovies, setMostLikedMovies] = useState([]);
   const [moviesByGenre, setMoviesByGenre] = useState([]);
 
   useEffect(() => {
-    fetchData();
+    fetchAnalyticsData();
   }, []);
 
-  const fetchData = async () => {
+  const fetchAnalyticsData = async () => {
     try {
-      const usersResponse = await axios.get('http://localhost:1989/api/admin/users');
-      const moviesResponse = await axios.get('http://localhost:1989/api/movies');
-      setUsers(usersResponse.data);
-      setMovies(moviesResponse.data);
-      processAnalyticsData(usersResponse.data, moviesResponse.data);
+      // Fetch users by favorite genre
+      const usersByGenreResponse = await axios.get('http://localhost:1989/api/admin/usersBbyGenre');
+      setUsersByGenre(usersByGenreResponse.data);
+
+      // Fetch most liked movies
+      const mostLikedMoviesResponse = await axios.get('http://localhost:1989/api/admin/mostLikedMovies');
+      setMostLikedMovies(mostLikedMoviesResponse.data);
+
+      // Fetch movies by genre
+      const moviesByGenreResponse = await axios.get('http://localhost:1989/api/admin/moviesByGenre');
+      setMoviesByGenre(moviesByGenreResponse.data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching analytics data:', error);
     }
-  };
-
-  const processAnalyticsData = (users, movies) => {
-    // Process users by favorite genre
-    const genreCounts = users.reduce((acc, user) => {
-      acc[user.favoriteGenre] = (acc[user.favoriteGenre] || 0) + 1;
-      return acc;
-    }, {});
-
-    const usersByGenreData = Object.keys(genreCounts).map(genre => ({
-      _id: genre,
-      count: genreCounts[genre]
-    }));
-    setUsersByGenre(usersByGenreData);
-
-    // Process most liked movies
-    const sortedMovies = [...movies].sort((a, b) => b.likes - a.likes);
-    const mostLikedMoviesData = sortedMovies.slice(0, 10);
-    setMostLikedMovies(mostLikedMoviesData);
-
-    // Process movies by genre
-    const movieGenreCounts = movies.reduce((acc, movie) => {
-      acc[movie.genre] = (acc[movie.genre] || 0) + 1;
-      return acc;
-    }, {});
-
-    const moviesByGenreData = Object.keys(movieGenreCounts).map(genre => ({
-      _id: genre,
-      count: movieGenreCounts[genre]
-    }));
-    setMoviesByGenre(moviesByGenreData);
   };
 
   return (

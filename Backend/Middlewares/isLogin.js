@@ -5,7 +5,7 @@ const isLogin = async (req, res, next) => {
     // Get token from header
     const headerObj = req.headers;
     const token = headerObj && headerObj.authorization && headerObj.authorization.split(" ")[1];
-  
+    
     const verifiedToken = verifyToken(token);
   
     console.log("Verified Token:", verifiedToken); // Add this line to check the value of verifiedToken
@@ -13,6 +13,7 @@ const isLogin = async (req, res, next) => {
     // Verify the token
     if (verifiedToken) {
       const newUser = await user.findById(verifiedToken.id).select("username email");
+      console.log(newUser)
   
       // Save the user ID to the request object
       req.userId = verifiedToken.id;

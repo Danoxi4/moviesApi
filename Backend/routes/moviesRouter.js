@@ -47,7 +47,7 @@ moviesRouter.put('/:id', isLogin, isAdmin, updateMovieCtrl )
 
 moviesRouter.delete('/:id', /*isLogin, isAdmin,*/ deleteMovieCtrl )
 
-moviesRouter.get('/:Id', isLogin, getMovieCtrl )
+moviesRouter.get('/:Id', /*isLogin,*/ getMovieCtrl )
 
 moviesRouter.post('/search', isLogin , searchNameCtrl )
 

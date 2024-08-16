@@ -13,7 +13,8 @@ const {
     removeFromFavoritesCtrl,
     userRecommendationsCtrl,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    getMoviesByFavoriteGenre
     } = require('../Controllers/userController')
 
 const  isLogin  = require('../Middlewares/isLogin')
@@ -28,6 +29,8 @@ userRouter.post('/register', userRegistrationCtrl )
 userRouter.post('/login', userLoginCtrl )
 
 userRouter.get('/favorites', isLogin , getUserFavoritesCtrl )
+
+userRouter.get('/landingPage', isLogin, getMoviesByFavoriteGenre)
 
 userRouter.get('/recommendations', isLogin , userRecommendationsCtrl )
 

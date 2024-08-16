@@ -72,6 +72,10 @@ movieSchema.virtual('ratingAverage').get(function () {
   return totalRating / this.reviews.length;
 });
 
+movieSchema.methods.getFormattedCast = function () {
+  return this.cast.map(castMember => `${castMember.actorName} as ${castMember.characterName}`).join(', ');
+};
+
 const Movie = mongoose.model('Movie', movieSchema);
 
 module.exports = Movie;
