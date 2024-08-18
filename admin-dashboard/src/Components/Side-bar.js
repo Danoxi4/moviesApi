@@ -25,6 +25,9 @@ const Sidebar = () => {
         <li>
           <Link to="/dashboard/analytics">Analytics</Link>
         </li>
+        <li>
+          <Link to="/dashboard/reviews">Reviews</Link>
+        </li>
       </ul>
       <button className="logout-button" onClick={logout}>
         Logout

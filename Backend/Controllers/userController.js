@@ -1,5 +1,6 @@
 const movie = require('../Models/movie')
 const user = require('../Models/user')
+const Comment = require('../Models/comment'); // Adjust the path to where your Comment model is located
 const AsyncHandler = require('express-async-handler')
 const { isPassMatched, hashPassword } = require('../utils/helper')
 const { generateToken } = require('../utils/generateToken')
@@ -77,9 +78,6 @@ const resetPassword = AsyncHandler(async (req, res) => {
   }
 });
 
-
-
-
 // Controller to handle forgot password request
 const forgotPassword = AsyncHandler( async (req, res) => {
   const { email } = req.body;
@@ -144,7 +142,7 @@ const userLoginCtrl =  AsyncHandler(async (req,res)=>{
          }
          else{
             const token = generateToken(newUser._id); 
-            res.json({ token, message: "User logged in successfully" });
+            res.json({ token, message: "User logged in successfully" , username: newUser.username});
             // req.user = newUser
             // req.userId = newUser._id
             // res.redirect(`/recommendations`);
@@ -319,6 +317,23 @@ const getMoviesByFavoriteGenre = AsyncHandler(async (req, res) => {
 });
 
 
+const addComment = async (req, res) => {
+  console.log("reach add comment")
+  const { name, text } = req.body;
+
+  if (!name || !text) {
+    return res.status(400).json({ message: 'Name and comment text are required.' });
+  }
+
+  try {
+    const newComment = new Comment({ name, text });
+    await newComment.save();
+    console.log("comment saved")
+    res.status(201).json({ message: 'Comment added successfully!', comment: newComment });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to add comment.', error: error.message });
+  }
+};
 
 
 
@@ -335,5 +350,6 @@ module.exports = {
     forgotPassword,
     requestPasswordReset,
     resetPassword,
-    getMoviesByFavoriteGenre
+    getMoviesByFavoriteGenre,
+    addComment
 }

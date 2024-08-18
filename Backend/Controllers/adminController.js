@@ -4,10 +4,20 @@ const { isPassMatched, hashPassword } = require('../utils/helper')
 const { generateToken } = require('../utils/generateToken')
 const User = require('../Models/user')
 const Movie = require('../Models/movie')
-const { sendEmail } = require('../utils/emailUtils')
 // const PageView = require('../models/PageView'); // Assuming you have a PageView model
+const Comment = require('../Models/comment'); // Adjust the path if needed
 
-
+// Controller function to get all comments
+const getComments = AsyncHandler(async (req, res) => {
+  try {
+    const comments = await Comment.find(); // Fetch all comments from the database
+    res.status(200).json(comments); // Send the comments as a JSON response
+    console.log("comments",comments);
+  } catch (error) {
+    console.error('Error fetching comments:', error);
+    res.status(500).json({ message: 'Failed to fetch comments. Please try again later.' });
+  }
+});
 
 const registerAdminCtrl = AsyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
@@ -147,17 +157,7 @@ const getMoviesByGenre = async (req, res) => {
   }
 };
 
-const sendEmailController = async (req, res) => {
-    const { name, comment } = req.body;
-  
-    try {
-      await sendEmail('danialemayehu32@gmail.com', `New message from ${name}`, comment);
-      res.status(200).send('Message sent successfully.');
-    } catch (error) {
-      console.error('Error sending email:', error);
-      res.status(500).send('Failed to send message.');
-    }
-  };
+
 
 module.exports = {
     registerAdminCtrl,
@@ -166,5 +166,6 @@ module.exports = {
     // getPageViews,
     getMostLikedMovies,
     getMoviesByGenre,
-    getUsersByFavoriteGenre
+    getUsersByFavoriteGenre,
+    getComments
 };

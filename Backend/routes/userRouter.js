@@ -14,7 +14,8 @@ const {
     userRecommendationsCtrl,
     forgotPassword,
     resetPassword,
-    getMoviesByFavoriteGenre
+    getMoviesByFavoriteGenre,
+    addComment
     } = require('../Controllers/userController')
 
 const  isLogin  = require('../Middlewares/isLogin')
@@ -43,5 +44,7 @@ userRouter.get('/watchlist', isLogin, getWatchlistCtrl)
 userRouter.post('/watchlist/:movieId', isLogin, addToWatchlistCtrl )
 
 userRouter.delete('/watchlist/:movieId', isLogin , removeFromWatchlistCtrl )
+
+userRouter.post('/addComment', addComment )
 
 module.exports = userRouter

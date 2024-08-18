@@ -9,6 +9,7 @@ import AnalyticsPage from './Pages/Analytics';
 import LoginPage from './Components/login';
 import { AuthProvider } from './AuthContext'; // Import AuthProvider
 import './styles/App.css';
+import ReviewsPage from './Pages/Reviews';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
             <Route path="/Dashboard/movies" element={<Movies />} />
             <Route path="/Dashboard/add-movie" element={<AddMovie />} />
             <Route path="/Dashboard/analytics" element={<AnalyticsPage />} />
+            <Route path="/Dashboard/reviews" element={<ReviewsPage />} />
+
           </Route>
         </Routes>
       </AuthProvider>
