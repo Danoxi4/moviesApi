@@ -9,29 +9,31 @@ function UserList() {
   const [error, setError] = useState(null);
   const { isLoggedIn, isAdmin, token } = useAuth(); // Access auth context
 
+  const fetchUsers = async () => {
+    // if (!isLoggedIn || !isAdmin) {
+    //   setError('Unauthorized access');
+    //   setLoading(false);
+    //   return;
+    // }
+
+    // console.log(token)
+    try {
+      console.log("fetched users")
+      console.log(users)
+      const response = await axios.get('http://localhost:1989/api/admin/users', {
+        headers: {
+          Authorization: `Bearer ${token}` // Add Authorization header
+        }
+      });
+      setUsers(response.data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
-    const fetchUsers = async () => {
-      if (!isLoggedIn || !isAdmin) {
-        setError('Unauthorized access');
-        setLoading(false);
-        return;
-      }
-
-      console.log(token)
-      try {
-        const response = await axios.get('http://localhost:1989/api/admin/users', {
-          headers: {
-            Authorization: `Bearer ${token}` // Add Authorization header
-          }
-        });
-        setUsers(response.data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchUsers();
   }, [isLoggedIn, isAdmin, token]); // Dependency array
 
@@ -41,15 +43,18 @@ function UserList() {
 
   const handleDelete = async (id) => {
     try {
+      console.log(id)
       await axios.delete(`http://localhost:1989/api/admin/users/${id}`, {
         headers: {
           Authorization: `Bearer ${token}` // Add Authorization header
         }
       });
       setUsers(users.filter((user) => user.id !== id));
+      fetchUsers();
     } catch (err) {
       setError(err.message);
     }
+    
   };
 
   if (loading) return <p>Loading...</p>;
@@ -68,12 +73,12 @@ function UserList() {
         </thead>
         <tbody>
           {users.map((user) => (
-            <tr key={user.id}>
+            <tr key={user._id}>
               <td>{user.username}</td>
               <td>{user.email}</td>
               <td className="actions">
-                <button className="edit" onClick={() => handleEdit(user.id)}>Edit</button>
-                <button className="delete" onClick={() => handleDelete(user.id)}>Delete</button>
+                <button className="edit" onClick={() => handleEdit(user._id)}>Edit</button>
+                <button className="delete" onClick={() => handleDelete(user._id)}>Delete</button>
               </td>
             </tr>
           ))}

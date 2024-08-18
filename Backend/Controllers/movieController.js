@@ -35,7 +35,7 @@ const uploadImageCtrl = AsyncHandler(async (req, res) => {
 });
 
 const uploadMoviesCtrl = AsyncHandler(async (req, res) => {
-  const { title, genre, releaseDate, director, rating = 0, poster } = req.body;
+  const { title, genre, releaseDate, director, rating , poster } = req.body;
 
   console.log('Received data:', req.body); // Log received data
 

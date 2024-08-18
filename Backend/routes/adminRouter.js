@@ -8,7 +8,8 @@ const {
     getUsersByFavoriteGenre,
     getMostLikedMovies,
     getMoviesByGenre,
-    getComments
+    getComments,
+    deleteUsers
 } = require('../Controllers/adminController')
 
 const isAdmin = require('../Middlewares/isAdmin')
@@ -21,5 +22,6 @@ adminRouter.get('/usersBbyGenre',/*isLogin, isAdmin,*/ getUsersByFavoriteGenre)
 adminRouter.get('/mostLikedMovies', /*isLogin, isAdmin,*/getMostLikedMovies);
 adminRouter.get('/moviesByGenre',/*isLogin, isAdmin,*/ getMoviesByGenre);
 adminRouter.get('/comments', /*isLogin, isAdmin,*/ getComments)
+adminRouter.delete('/users/:id', /*isLogin, isAdmin,*/deleteUsers);
 
 module.exports = adminRouter

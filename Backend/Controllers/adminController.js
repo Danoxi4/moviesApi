@@ -66,6 +66,7 @@ const adminLoginCtrl = AsyncHandler(async (req, res) => {
 
 const getUsers = AsyncHandler(async (req, res) => {
     const users = await User.find({});
+    console.log(users)
     res.json(users);
 });
 
@@ -157,6 +158,31 @@ const getMoviesByGenre = async (req, res) => {
   }
 };
 
+const deleteUsers = async (req, res) => {
+  try {
+    console.log("start deleting users");
+    const userId = req.params.id;
+    console.log(userId);
+    // Validate that the userId is a valid MongoDB ObjectId
+    if (!userId) {
+      return res.status(400).json({ message: 'User ID is required' });
+    }
+
+    // Attempt to find and delete the user by ID
+    const user = await User.findByIdAndDelete(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Return success response
+    res.status(200).json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
 
 
 module.exports = {
@@ -167,5 +193,6 @@ module.exports = {
     getMostLikedMovies,
     getMoviesByGenre,
     getUsersByFavoriteGenre,
-    getComments
+    getComments,
+    deleteUsers
 };
