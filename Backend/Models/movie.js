@@ -17,19 +17,15 @@ const movieSchema = new mongoose.Schema({
     type : Number,
     default: 0
   },
-  cast: [
-    {
-      actorName: {
-        type: String,
-        required: true,
-      },
-      characterName: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+  cast: {
+    type: [String],  
+    required: true,  
+  },
   director: {
+    type: String,
+    required: true,
+  },
+  description: {
     type: String,
     required: true,
   },

@@ -8,9 +8,26 @@ const MovieForm = () => {
   const [rating, setRating] = useState('');
   const [releaseDate, setReleaseDate] = useState('');
   const [director, setDirector] = useState('');
+  const [description, setDescription] = useState(''); // New description field
+  const [actors, setActors] = useState(['']); // State for actors
   const [poster, setPoster] = useState(null);
   const [showPopover, setShowPopover] = useState(false);
   const [error, setError] = useState('');
+
+  const handleAddActor = () => {
+    setActors([...actors, '']);
+  };
+
+  const handleActorChange = (index, value) => {
+    const newActors = [...actors];
+    newActors[index] = value;
+    setActors(newActors);
+  };
+
+  const handleRemoveActor = (index) => {
+    const newActors = actors.filter((_, i) => i !== index);
+    setActors(newActors);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,22 +38,12 @@ const MovieForm = () => {
       setRating('');
       setReleaseDate('');
       setDirector('');
+      setDescription('');
+      setActors(['']);
       setPoster(null);
     };
 
     try {
-      // const response = await axios.get('http://localhost:1989/api/movies');
-      // const existingMovies = response.data.data;
-
-      // const isDuplicate = existingMovies.some(movie => movie.title.toLowerCase() === title.toLowerCase());
-
-      // if (isDuplicate) {
-      //   setError('Movie already exists');
-      //   setShowPopover(true);
-      //   clearForm();
-      //   return;
-      // }
-
       let posterUrl;
 
       if (poster) {
@@ -58,6 +65,8 @@ const MovieForm = () => {
         rating,
         releaseDate,
         director,
+        description, // Include description
+        cast: actors, // Include actors array as cast
         poster: posterUrl,
       };
 
@@ -111,6 +120,26 @@ const MovieForm = () => {
           value={director}
           onChange={(e) => setDirector(e.target.value)}
         />
+        <label htmlFor="description">Description</label> {/* New description field */}
+        <textarea
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+
+        <label htmlFor="actors">Actors</label>
+        {actors.map((actor, index) => (
+          <div key={index} className="actor-input">
+            <input
+              type="text"
+              value={actor}
+              onChange={(e) => handleActorChange(index, e.target.value)}
+            />
+            <button type="button" onClick={() => handleRemoveActor(index)}>Remove</button>
+          </div>
+        ))}
+        <button type="button" onClick={handleAddActor}>+ Add Actor</button>
+
         <label htmlFor="poster">Poster</label>
         <input
           type="file"

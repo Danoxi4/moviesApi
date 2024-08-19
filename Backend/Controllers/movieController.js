@@ -35,12 +35,12 @@ const uploadImageCtrl = AsyncHandler(async (req, res) => {
 });
 
 const uploadMoviesCtrl = AsyncHandler(async (req, res) => {
-  const { title, genre, releaseDate, director, rating , poster } = req.body;
+  const { title, genre, releaseDate, director, rating, poster, description, cast } = req.body;
 
   console.log('Received data:', req.body); // Log received data
 
   // Perform validation on the request body
-  if (!title || !genre || !releaseDate || !director) {
+  if (!title || !genre || !releaseDate || !director || !description || !cast || cast.length === 0) {
     return res.status(400).json({ message: 'Please provide all required movie details' });
   }
 
@@ -51,6 +51,8 @@ const uploadMoviesCtrl = AsyncHandler(async (req, res) => {
     releaseDate,
     director,
     poster: poster ? poster : '', // Save the URL directly if provided, otherwise save an empty string
+    description,
+    cast,
   });
 
   const savedMovie = await newMovie.save();
