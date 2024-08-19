@@ -179,8 +179,10 @@ const userLoginCtrl =  AsyncHandler(async (req,res)=>{
 });
 
 const getUserFavoritesCtrl = AsyncHandler(async (req, res) => {
-  const usersId = req.userId; // Replace with the location where you store the userId after login
-  const newUser = await user.findById(usersId).populate('favorites', 'title');
+  const userId = req.userId; // Assuming userId is available in req
+
+  // Fetch the user and populate only the required fields from the favorites array
+  const newUser = await user.findById(userId).populate('favorites', 'title rating genre director poster');
 
   if (!newUser) {
     res.status(404);
@@ -188,7 +190,9 @@ const getUserFavoritesCtrl = AsyncHandler(async (req, res) => {
   }
 
   res.json(newUser.favorites);
+  console.log("Favorites fetched:", newUser.favorites);
 });
+
 
 const addToFavoritesCtrl = AsyncHandler(async (req, res) => {
   const usersId = req.userId; // Replace with the location where you store the userId after login
@@ -235,8 +239,10 @@ const removeFromFavoritesCtrl = AsyncHandler(async (req, res) => {
 });
 
 const getWatchlistCtrl = AsyncHandler(async (req, res) => {
-  const usersId = req.userId; // Replace with the location where you store the userId after login
-  const newUser = await user.findById(usersId).populate('watchlist', 'title');
+  const userId = req.userId; // Assuming userId is available in req
+
+  // Fetch the user and populate only the required fields from the favorites array
+  const newUser = await user.findById(userId).populate('watchlist', 'title rating genre director poster');
 
   if (!newUser) {
     res.status(404);
@@ -244,6 +250,7 @@ const getWatchlistCtrl = AsyncHandler(async (req, res) => {
   }
 
   res.json(newUser.watchlist);
+  console.log("WatchList fetched:", newUser.watchlist);
 });
 
 const addToWatchlistCtrl = AsyncHandler(async (req, res) => {
