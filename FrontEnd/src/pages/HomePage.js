@@ -5,23 +5,16 @@ import IntroSection from '../Components/introSection';
 import MovieSection from '../Components/movieSection';
 import ContactSection from '../Components/contactSection';
 import { HomePageContainer } from '../styles/HomePageStyle'
+import AboutUs from '../Components/aboutUs'
 
 const HomePage = () => {
-  const [newestMovie, setNewestMovie] = useState(null);
-
-  useEffect(() => {
-    // Fetch the newest movie from the API
-    fetch('http://localhost:5000/api/movies/newest')
-      .then(response => response.json())
-      .then(data => setNewestMovie(data))
-      .catch(error => console.error('Error fetching the newest movie:', error));
-  }, []);
 
   return (
     <HomePageContainer>
-      <IntroSection />
-      <MovieSection movie={newestMovie} />
-      <ContactSection />
+      <IntroSection id="intro" />
+      <MovieSection id="movie" />
+      <AboutUs id="about" />
+      <ContactSection id="contact" />
     </HomePageContainer>
   );
 };

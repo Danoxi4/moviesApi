@@ -12,6 +12,7 @@ const ModalBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;   /* High z-index to ensure it stays on top */
 `;
 
 const ModalContent = styled.div`
@@ -73,6 +74,18 @@ const Form = styled.form`
     width: 100%;
     background: #041D56; /* Match modal background */
     color: #ADE1FB; /* Light blue text */
+  }
+`;
+
+export const ForgotPasswordLink = styled.a`
+  display: block;
+  margin-top: 10px;
+  color: #007BFF; /* Adjust color as needed */
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: #0056b3; /* Adjust hover color as needed */
   }
 `;
 

@@ -17,16 +17,14 @@ const Header = styled.header`
 const Body = styled.div`
   flex: 1;
   padding: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
-const Footer = styled.footer`
-  background: #041D56;
-  color: #ADE1FB;
-  padding: 1rem;
+const WatchlistTitle = styled.h2`
   text-align: center;
+  margin-bottom: 20px;
+  font-size: 35px;
+  font-weight: bold;
+  color: #ADE1FB;
 `;
 
 const MoviesGrid = styled.div`
@@ -43,7 +41,6 @@ const MovieCard = styled.div`
   border-radius: 10px;
   overflow: hidden;
   color: #fff;
-  text-align: left;
   height: 300px;
   display: flex;
   flex-direction: column;
@@ -90,14 +87,22 @@ const RemoveButton = styled.button`
   }
 `;
 
+const Footer = styled.footer`
+  background: #041D56;
+  color: #ADE1FB;
+  padding: 1rem;
+  text-align: center;
+`;
+
 export { 
     PageContainer,
     Header,
     Body,
     Footer,
+    WatchlistTitle,
     MoviesGrid,
     MovieCard,
     MovieTitle,
     MovieDetails,
     RemoveButton
-}
+};

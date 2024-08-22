@@ -1,12 +1,13 @@
 import React from 'react';
 import { AvatarContainer } from '../styles/avatarStyle';
+
 // Function to generate a random color
 const getRandomColor = () => {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
+  const h = Math.random() * 360; // Random hue
+  const s = Math.random() * 0.5 + 0.5; // Random saturation (at least 50%)
+  const l = Math.random() * 0.3 + 0.2; // Random lightness (between 20% and 50%)
+
+  const color = `hsl(${h}, ${s * 100}%, ${l * 100}%)`;
   return color;
 };
 
@@ -17,6 +18,8 @@ const Avatar = ({ name }) => {
   // Generate a random color for the background
   const bgColor = getRandomColor();
 
+console.log("Avatar letter", initial)
+console.log(name)
   return (
     <AvatarContainer bgColor={bgColor}>
       {initial}

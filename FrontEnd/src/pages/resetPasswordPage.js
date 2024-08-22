@@ -34,6 +34,7 @@ const ResetPasswordPage = () => {
 
       if (response.status === 200) {
         setSuccess('Password reset successful!');
+        console.log(response.data.user);
         navigate('/user-page', { state: { user: response.data.user } });
         setError('');
       }

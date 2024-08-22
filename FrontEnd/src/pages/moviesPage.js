@@ -3,11 +3,17 @@ import { MoviesContainer, MovieCard, MovieImage, MovieInfo, MovieTitle, MovieDet
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faList } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../Hook/useAuthContext';
+
 
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+  const { user } = useAuthContext();
+
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -32,8 +38,25 @@ const MoviesPage = () => {
     movie.title.toLowerCase().includes(searchQuery.toLowerCase())
   ) : [];
 
-  const handleAddToFavorites = () => {}
-  const handleAddToWatchlist = () => {}
+  const handleAddToFavorites = async (movieId) => {
+    try {
+      await axios.post(`http://localhost:1989/api/users/favorites/${movieId}`);
+      alert('Movie added to favorites!');
+    } catch (error) {
+      console.error('Error adding to favorites:', error);
+    }
+  };
+
+  const handleAddToWatchlist = async (movieId) => {
+    try {
+      await axios.post(`http://localhost:1989/api/users/watchlist/${movieId}`);
+      alert('Movie added to watchlist!');
+    } catch (error) {
+      console.error('Error adding to watchlist:', error);
+    }
+  };
+   
+  
 
   return (
     <>
@@ -48,10 +71,10 @@ const MoviesPage = () => {
       </Header>
       <MoviesContainer>
         {filteredMovies.map((movie) => (
-          <MovieCard key={movie._id}>
+          <MovieCard key={movie._id} onClick={() => navigate(`/movie/${movie._id}`)}>
             <MovieImage src={movie.poster} alt={movie.title} />
             <MovieInfo>
-              <MovieTitle>{movie.title}</MovieTitle>
+              <MovieTitle>Title: {movie.title}</MovieTitle>
               <MovieDetails>Genre: {movie.genre}</MovieDetails>
               <MovieDetails>Director: {movie.director || 'Unknown'}</MovieDetails>
               <MovieDetails>Release Date: {new Date(movie.releaseDate).toLocaleDateString()}</MovieDetails>

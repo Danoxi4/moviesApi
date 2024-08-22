@@ -19,10 +19,10 @@ const Logo = styled.div`
 `;
 
 const NavLinks = styled.div`
-  display: flex;
-  align-items: center;
+   display: flex;
+   align-items: center;
 
-  @media (max-width: 768px) {
+    @media (max-width: 768px) {
     display: ${props => (props.isOpen ? 'flex' : 'none')};
     flex-direction: column;
     width: 100%;
@@ -50,8 +50,12 @@ const NavLink = styled.a`
 `;
 
 const Spacer = styled.div`
-  width: 4rem; /* Adjust width for desired spacing */
+  width: 10rem; /* Adjust width for desired spacing */
 `;
+
+const MiniSpacer = styled.div`
+  width: 1rem; /* Adjust width for desired spacing
+`
 
 const Input = styled.input`
   margin-left: 1rem;
@@ -84,4 +88,4 @@ const Bar = styled.div`
   margin: 3px 0;
 `;
 
-export { Bar, Hamburger, NavLink, NavLinks, Logo, Navbar, Input, Spacer }
+export { Bar, Hamburger, NavLink, NavLinks, Logo, Navbar, Input, Spacer, MiniSpacer }

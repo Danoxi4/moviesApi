@@ -1,106 +1,125 @@
 import styled from 'styled-components';
 
-const Section = styled.section`
-  width: 180%; /* Add this property */
-  padding: 2rem;
-  background: #01082D; /* Darkest background color */
-  color: #ADE1FB; /* Light blue text */
-
-  @media (max-width: 1200px) {
-    width: 100%;
-  }
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
+export const Section = styled.section`
+  background-color: #041D56;
+  padding: 40px 0;
+  width: 100%;
 `;
 
-const Container = styled.div`
-  max-width: 1800px; /* Add this property */
-  margin: 0 auto; /* Add this property */
-  padding: 2rem;
-  background: #041D56; /* Dark blue background */
-  border-radius: 10px;
-  display: flex; /* Add this property */
-  flex-direction: column; /* Add this property */
-  align-items: center; /* Add this property */
-
-  @media (max-width: 1200px) {
-    max-width: 100%;
-  }
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
+export const Container = styled.div`
+  background-color: #041D56;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
-const ContactHeader = styled.h2`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #ADE1FB; /* Light blue text */
-  text-align: center; /* Add this property */
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
+export const ContactHeader = styled.h2`
+  text-align: center;
+  margin-bottom: 20px;
+  color: #266ca9;
+  font-size: 35px;
 `;
 
-const Socials = styled.div`
+export const Socials = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 2rem;
-
-  @media (max-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+  gap: 10px;
 `;
 
-const SocialLink = styled.a`
-  color: #ADE1FB; /* Light blue text */
-  margin: 0 1rem; /* Add margin to separate links */
+export const SocialLink = styled.a`
+  color: #266CA9;
   text-decoration: none;
-  transition: color 0.3s;
-  display: inline-block;
-  svg {
-    margin-right: 0.5rem; /* Add some space between the icon and text */
-  }
-
-  @media (max-width: 768px) {
-    margin: 0 0.5rem;
-  }
-`;
-
-const SignInMessage = styled.div`
+  font-size: 18px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-
-  @media (max-width: 768px) {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-`;
-
-const SignInButton = styled.a`
-  background: #266CA9; /* Medium blue background */
-  color: #ADE1FB; /* Light blue text */
-  padding: 0.5rem 1rem;
-  border-radius: 10px; /* Rounded corners */
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.3s;
-  margin-top: 1rem;
+  gap: 10px;
 
   &:hover {
-    background: #0F2573; /* Darker blue background */
+    text-decoration: underline;
   }
 
-  @media (max-width: 768px) {
-    padding: 0.3rem 0.7rem;
-    font-size: 0.9rem;
+  svg {
+    font-size: 24px;
   }
 `;
 
-export { Section, Container, Socials, SocialLink, SignInMessage, SignInButton, ContactHeader };
+export const ContactForm = styled.form`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  textarea {
+    height: 100px;
+    resize: none;
+  }
+
+  button {
+    background-color: #266CA9;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0F2573;
+    }
+  }
+`;
+
+export const SignInMessage = styled.div`
+  flex-basis: 100%;
+  text-align: center;
+  margin-top: auto; /* Push it to the bottom of the container */
+  color: #266ca9;
+
+  p {
+    margin-bottom: 10px;
+  }
+`;
+
+export const SignInButton = styled.button`
+  background-color: #041D56;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #01082D;
+  }
+`;
+
+export const FooterContainer = styled.footer`
+  width: 100%;
+  padding: 20px;
+  background-color: #01082D; /* Adjust as needed */
+  color: #fff;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 14px;
+  margin-top: 60px; /* Space between form and footer */
+`;
+
+export const Spacer = styled.div`
+  height: 20px;
+`

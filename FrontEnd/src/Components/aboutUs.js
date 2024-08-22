@@ -40,9 +40,9 @@ const AboutUs = () => {
         </TeamContainer>
       </Section>
       
-      <Footer>
+      {/* <Footer>
         <Paragraph>&copy; 2024 MovieLand. All rights reserved.</Paragraph>
-      </Footer>
+      </Footer> */}
     </AboutUsContainer>
   );
 };
