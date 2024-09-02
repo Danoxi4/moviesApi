@@ -28,6 +28,7 @@ const UserLandingPage = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
+        console.log('user landing page')
         const response = await axios.get('http://localhost:1989/api/users/landingPage', {
           headers: { Authorization: `Bearer ${user.token}` },
         });

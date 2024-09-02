@@ -26,36 +26,35 @@ const AuthModal = ({ onClose, initialTab }) => {
   };
 
   const handleSignIn = async (e) => {
-  e.preventDefault();
-  try {
-    console.log('Signing in');
-    const response = await axios.post('http://localhost:1989/api/users/login', {
-      email: signInEmail,
-      password: signInPassword,
-      credentials: 'included',
-    });
-
-    const data = response.data;
-    console.log('Sign in success:', data);
-
-    if (response.status === 200) {
-      dispatch({ type: 'LOGIN', payload: { email: signInEmail, token: data.token, username: data.username } });
-    
-      localStorage.setItem('user', JSON.stringify({ email: signInEmail, token: data.token, username: data.username }));
-      axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-      onClose();
-      navigate('/user-page');
+    e.preventDefault();
+    try {
+      console.log('Signing in');
+      const response = await axios.post('http://localhost:1989/api/users/login', {
+        email: signInEmail,
+        password: signInPassword,
+        credentials: 'included',
+      });
+  
+      const data = response.data;
+      console.log('Sign in success:', data);
+  
+      if (response.status === 200) {
+        dispatch({ type: 'LOGOUT' }); // Clear AuthContext state
+        dispatch({ type: 'LOGIN', payload: { email: signInEmail, token: data.token, username: data.username } });
+        localStorage.clear(); // Clear localStorage before setting new user data
+        localStorage.setItem('user', JSON.stringify({ email: signInEmail, token: data.token, username: data.username }));
+        axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+        onClose();
+        navigate('/user-page');
+      } else {
+        console.error('Sign in error:', data.message);
+      }
+    } catch (error) {
+      console.error('Sign in error:', error.message);
     }
-    else {
-      console.error('Sign in error:', data.message);
-    }
-  } catch (error) {
-    console.error('Sign in error:', error.message);
-  }
-};
+  };
 
   
-
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
