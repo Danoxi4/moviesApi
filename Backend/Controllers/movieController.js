@@ -146,8 +146,9 @@ const getMovieCtrl = async (req, res) => {
       releaseDate: movie.releaseDate,
       director: movie.director,
       poster: movie.poster,
-      cast: formattedCast, // Use the formatted cast
+      cast: movie.cast, // Use the formatted cast
       ratingAverage: movie.ratingAverage,
+      description: movie.description,
       reviews: movie.reviews,
     });
   } catch (error) {

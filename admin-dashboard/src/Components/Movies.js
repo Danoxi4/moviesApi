@@ -56,7 +56,7 @@ function MovieList({ setSelectedMovie }) {
               <tr key={movie._id}> {/* Use '_id' as the key */}
                 <td>{movie.title}</td>
                 <td>{movie.genre}</td>
-                <td>{movie.rating}</td>
+                <td>{movie.ratingAverage}</td>
                 <td>{movie.releaseDate}</td>
                 <td>{movie.director}</td>
                 <td className="actions">
