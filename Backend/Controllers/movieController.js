@@ -323,6 +323,67 @@ const reviewMovieCtrl = AsyncHandler(async (req, res) => {
   }
 });
 
+const rateMovie = async (req, res) => {
+  try {
+    const { movieId } = req.params;
+    const { rating, comment } = req.body;
+    const userId = req.user._id; // Assuming you have middleware that authenticates the user and sets req.user
+
+    // Validate rating value
+    if (rating < 0 || rating > 5) {
+      return res.status(400).json({ error: 'Rating must be between 0 and 5.' });
+    }
+
+    // Find the movie by its ID
+    const movie = await Movie.findById(movieId);
+    if (!movie) {
+      return res.status(404).json({ error: 'Movie not found.' });
+    }
+
+    // Check if the user has already rated the movie
+    const existingReview = movie.reviews.find(
+      (review) => review.userId.toString() === userId.toString()
+    );
+
+    if (existingReview) {
+      // Update the existing review
+      existingReview.rating = rating;
+      existingReview.comment = comment;
+      existingReview.createdAt = Date.now(); // Update the timestamp
+    } else {
+      // Add a new review
+      const newReview = {
+        userId: new mongoose.Types.ObjectId(userId), // Fixed this line
+        rating,
+        comment,
+        createdAt: Date.now(),
+      };
+      movie.reviews.push(newReview);
+    }
+
+    // Save the updated movie with the new/updated review
+    await movie.save();
+
+    // Optionally, calculate the new average rating
+    const totalRatings = movie.reviews.reduce((acc, review) => acc + review.rating, 0);
+    const ratingAverage = totalRatings / movie.reviews.length;
+
+    // Return the updated movie with the new rating
+    res.status(200).json({
+      message: 'Movie rated successfully!',
+      movie: {
+        id: movie._id,
+        title: movie.title,
+        ratingAverage: ratingAverage.toFixed(2), // Send calculated rating average
+        reviews: movie.reviews,
+      },
+    });
+  } catch (error) {
+    console.error('Error rating movie:', error);
+    res.status(500).json({ error: 'An error occurred while rating the movie.' });
+  }
+};
+
 const getLatestMovies = async (req, res) => {
   try {
     const latestMovies = await Movie.find().sort({ releaseDate: -1 }).limit(5);
@@ -345,5 +406,6 @@ module.exports = {
   reviewMovieCtrl,
   getMovies,
   uploadImageCtrl,
-  getLatestMovies
+  getLatestMovies,
+  rateMovie
 };
