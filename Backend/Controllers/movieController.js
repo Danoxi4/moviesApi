@@ -127,34 +127,45 @@ const deleteMovieCtrl = async (req, res) => {
 };
 
 // Controller function to fetch a single movie by its ID
-// In your controller or route handler
+ 
 const getMovieCtrl = async (req, res) => {
   try {
-    console.log(req.params.Id);
+    // Fetch the movie details
     const movie = await Movie.findById(req.params.Id);
+
     if (!movie) {
       return res.status(404).json({ message: 'Movie not found' });
     }
 
-    // Use the getFormattedCast method to get the formatted cast
-    const formattedCast = movie.getFormattedCast();
+    // Fetch user details for each review
+    const reviewsWithUserDetails = await Promise.all(
+      movie.reviews.map(async (review) => {
+        const newUser = await user.findById(review.userId);
+        return {
+          reviewerName: newUser ? newUser.username : 'Unknown',
+          ratingStars: '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating),
+          comment: review.comment,
+          reviewedDate: new Date(review.createdAt).toLocaleDateString(),
+        };
+      })
+    );
 
-    console.log(movie)
     res.json({
       title: movie.title,
       genre: movie.genre,
       releaseDate: movie.releaseDate,
       director: movie.director,
       poster: movie.poster,
-      cast: movie.cast, // Use the formatted cast
+      cast: movie.cast,
       ratingAverage: movie.ratingAverage,
       description: movie.description,
-      reviews: movie.reviews,
+      reviews: reviewsWithUserDetails,
     });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error });
   }
 };
+
 
 // Controller function to search movies by name
 const searchNameCtrl = AsyncHandler(async (req, res) => {
