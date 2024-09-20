@@ -28,6 +28,10 @@ const Sidebar = () => {
         <li>
           <Link to="/dashboard/reviews">Reviews</Link>
         </li>
+        <li>
+          <Link to="/dashboard/register">Register</Link>
+        </li>
+
       </ul>
       <button className="logout-button" onClick={logout}>
         Logout

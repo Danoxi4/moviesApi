@@ -10,6 +10,7 @@ import LoginPage from './Components/login';
 import { AuthProvider } from './AuthContext'; // Import AuthProvider
 import './styles/App.css';
 import ReviewsPage from './Pages/Reviews';
+import AdminRegister from './Pages/adminRegister';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/Dashboard/add-movie" element={<AddMovie />} />
             <Route path="/Dashboard/analytics" element={<AnalyticsPage />} />
             <Route path="/Dashboard/reviews" element={<ReviewsPage />} />
+            <Route path="/Dashboard/register" element={<AdminRegister />} />
 
           </Route>
         </Routes>
